@@ -1,0 +1,114 @@
+body {
+  background-image: url("https://propacifico.org/wp-content/uploads/2024/02/adobestock-284418692-scaled.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cont1 {
+  margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+}
+
+.cont2 {
+  margin-top: 20px;
+  margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+}
+
+.form-control {
+  /* border-collapse: collapse; */
+  border: 1px solid black;
+  border-radius: 0px;
+  background: rgba(255, 255, 255, 0.4);
+  font-family: "Oswald", sans-serif;
+  color: black;
+}
+.form-label {
+  color: black;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonIni {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  
+}
+
+.botonReg {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.botonIni button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 150px;
+  padding: 10px 0px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  color: rgb(0, 0, 0 );
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.botonReg button {
+  display: flex;
+  width: 100%;
+  max-width: 150px;
+  padding: 10px 40px;
+  border:1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* .botonIni button:hover,
+    .botonReg button:hover {
+      background-color: #0056b3; 
+    } */
+
+.text-center {
+  margin-top: 30px;
+  color: black;
+}
+
+.row {
+  width: 35%;
+  margin-top: 60px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.4);
+}
+.form-control::placeholder {
+  color: black;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+    .row {
+        width: 60%;
+        margin-top: 170px;
+        border-radius: 40px;
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+}
