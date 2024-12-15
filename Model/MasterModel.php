@@ -5,13 +5,15 @@
     Class MasterModel extends Connection{
         public function consult($sql) {
             $result = pg_query($this->getConnect(), $sql);
-            // if (!$result) {
-            //     die("Error en la consulta: ".pg_last_error());
-            // }
-        
-            // $data = pg_fetch_all($result);
-            // var_dump($data); 
-            return pg_fetch_all($result);
+
+            $data = pg_fetch_all($result);
+
+            if (count($data) === 1) {
+                return $data[0]; // Devuelve el primer (y único) array asociativo
+            } else {
+                return $data;
+            }
+            
         }
 
         public function insert($sql) {

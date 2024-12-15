@@ -1,0 +1,55 @@
+MAP
+NAME Colombia
+SIZE 1350 550
+STATUS ON
+EXTENT -81.7201 -4.23687 -66.8705 12.5903
+#EXTENT -180 -90 180 90
+#EXTENT -76.5928 3.33181  -76.4613 3.50587
+SHAPEPATH "shape"
+
+ FONTSET "misc/fonts/fonts.txt"
+ SYMBOLSET "misc/symbols/symbols.sym"
+
+IMAGECOLOR 141 170 133
+UNITS dd
+
+WEB
+IMAGEPATH "C:/ms4w/tmp/ms_tmp"
+IMAGEURL "/ms_tmp/"
+END
+
+LAYER
+    CONNECTIONTYPE postgis
+        NAME "Poligonos"
+        STATUS ON
+        CONNECTION "user=postgres password=Valentina123 dbname=geo host=localhost port=5433"
+        DATA "geom FROM (SELECT * FROM poligono) as poligono using unique gid SRID=-1"
+        TYPE POLYGON
+        CLASS
+        STYLE
+            COLOR 146 146 146
+            OUTLINECOLOR 0 0 0
+        END
+    END
+END
+
+LAYER
+    CONNECTIONTYPE postgis
+        NAME "Puntos"
+        STATUS ON 
+        
+        CONNECTION "user=postgres password=Valentina123 dbname=geo host=localhost port=5433"
+        DATA "geom FROM (SELECT * FROM puntos) as Puntos using unique gid SRID=-1"
+        TYPE POINT 
+        CLASS
+            STYLE 
+            SYMBOL STAR
+            SIZE 10
+                COLOR 255 123 120
+                OUTLINECOLOR 0 0 0
+            END 
+        END
+END
+
+
+END
