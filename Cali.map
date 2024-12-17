@@ -1,8 +1,8 @@
 MAP
 NAME Cali
-SIZE 1350 550
+SIZE 550 550
 STATUS ON
-$EXTENT -81.7201 -4.23687 -66.8705 12.5903
+#EXTENT -81.7201 -4.23687 -66.8705 12.5903
 #EXTENT -180 -90 180 90
 EXTENT -76.5928 3.33181  -76.4613 3.50587
 SHAPEPATH "shape"
@@ -22,13 +22,13 @@ END
 
 
 LAYER
+    NAME "Mapa"
+    STATUS ON
     CONNECTIONTYPE postgis
-        NAME "Mapa"
-        STATUS ON
-        CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
-        DATA "geom FROM (SELECT * FROM cinco) as cinco using unique gid SRID=-1"
-        TYPE POLYGON
-        CLASS
+    CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
+    DATA "geom FROM (SELECT * FROM cinco) as cinco using unique gid SRID=-1"
+    TYPE POLYGON
+    CLASS
         STYLE
             COLOR 146 146 146
             OUTLINECOLOR 0 0 0
@@ -37,12 +37,13 @@ LAYER
 END
 
 
+
 # LAYER 
-    CONNECTIONTYPE postgis
+    #CONNECTIONTYPE postgis
 #NAME "Comuna"
 #STATUS Off
-        CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
-        DATA "geom FROM (SELECT * FROM six) as six using unique gid SRID=-1"
+        #CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
+        #DATA "geom FROM (SELECT * FROM six) as six using unique gid SRID=-1"
 #TYPE POLYGON
 #LABELITEM "Comuna"
 #CLASS
@@ -65,7 +66,6 @@ LAYER
     CONNECTIONTYPE postgis
         NAME "Puntos"
         STATUS ON 
-        
         CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
         DATA "geom FROM (SELECT * FROM puntos) as Puntos using unique gid SRID=-1"
         TYPE POINT 

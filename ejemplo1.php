@@ -6,9 +6,9 @@ if(!extension_loaded("MapScript")){
     dl('php_mapscript.'.PHP_SHLIB_SUFFIX);
 }
 
-$mapObject = ms_newMapObj("Colombia.map");
+$mapObject = ms_newMapObj("Cali.map");
 
-$map_pt = click2map($_POST['image_x'], $_POST['image_y']);
+// $map_pt = click2map($_POST['image_x'], $_POST['image_y']);
 
 $pt = ms_newPointObj();
 $pt -> setXY($map_pt[0], $map_pt[1]);
@@ -18,52 +18,153 @@ $mapImage = $mapObject -> draw();
 
 $urlImage = $mapImage -> saveWebImage();
 
-function click2map($click_x,$click_y)
-{
-    global $mapObject;
-    $e = $mapObject->extent;
-    $x_pct = ($click_x/$mapObject->width);
-    $y_pct = 1- ($click_y/$mapObject->height);
-    $x_map = $e->minx + (($e->maxx-$e->minx)*$x_pct);
-    $y_map = $e->miny + (($e->maxy-$e->miny)*$y_pct);
+// function click2map($click_x,$click_y)
+// {
+//     global $mapObject;
+//     $e = $mapObject->extent;
+//     $x_pct = ($click_x/$mapObject->width);
+//     $y_pct = 1- ($click_y/$mapObject->height);
+//     $x_map = $e->minx + (($e->maxx-$e->minx)*$x_pct);
+//     $y_map = $e->miny + (($e->maxy-$e->miny)*$y_pct);
 
-    return array($x_map,$y_map);
-}
+//     return array($x_map,$y_map);
+// }
 
 ?>
 
 <html>
     <head>
-        <title>Ejemplo 1</title>
+        <title>Ejemplo 1</title><link rel="stylesheet" type="text/css" href="misc/img/dc.css">
+        <script src="misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
+        <style type="text/css">
+        
+        #Layer1 {
+            position: absolute;
+            width: 362px;
+            height: 158px;
+            z-index: 101px;
+            left: 880px;
+            top: 120px;
+            
+        }
+
+        #Layer2 {
+            position: absolute;
+            width: 120px;
+            padding: 0px 30px;
+            height: 150px;
+            z-index: 102px;
+            left: 880px;
+            top: 280px;
+            background-color: #688e89;
+            border: 2px solid #445b59;
+        }
+
+
+    </style>
+        
     </head>
 
     <body>
 
         <form action="ejemplo1.php" method="post">
+        <div class="mscross" style="overflow: hidden; width: 550px; height: 500px; 
+    -moz-user-select: none; position: relative; left: 300px; border: 2px solid #445b59;" id="dc_main">
 
-            <input type="image" name="image" src="<?php echo $urlImage; ?>" border=1>
-
+</div>
+<input type="image" name="image" src="<?php echo $urlImage; ?>" border=1>    
         </form>
 
-        <p>
-            <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
+        <div id="Layer2">
+
+        <form name="select_layers">
+
+            <p align="left">
+                <input CHECKED onclick="chgLayers()" type="checkbox" name="layer[0]"
+                    value="Mapa">
+                <strong>Mapa</strong>
+
+            <p align="left">
+                <input CHECKED onclick="chgLayers()" type="checkbox" name="layer[1]"
+                    value="Comuna">
+                <strong>Comuna</strong>
+        
+
+                
+        </form>
+    </div>
+
+    <div id="Layer1">
+        <div style="overflow: auto; width: 140px; height: 140px;
+        -moz-user-select: none; position: relative; z-index: 100;" id="dc_main2">
+        </div>
+    </div>
+
+
+        <!-- <p> -->
+            <b>Coordenadas en pixeles:</b> //<?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
 
             <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?>
-        </p>
+        <!-- </p> -->
         <?php
-                $obj = new MasterModel();
+                // $obj = new MasterModel();
 
-                $result = $obj -> autoIncrement('puntos')-2;
+                // $result = $obj -> autoIncrement('puntos')-2;
                 
 
 
-                $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
-                if ($obj->insert($sql)) {
-                    echo "Se inserto correctamente";
-                } else {
-                    echo "Se ha producido un error al insertar";
-                }
+                // $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
+                // if ($obj->insert($sql)) {
+                //     echo "Se inserto correctamente";
+                // } else {
+                //     echo "Se ha producido un error al insertar";
+                // }
             ?>
+
+
+<script type="text/javascript">
+ 
+
+        myMap1 = new msMap(document.getElementById("dc_main"),
+            'standardRight' );
+        myMap1.setCgi('/cgi-bin/mapserv.exe');
+        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/Cali.map');
+        myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
+        myMap1.setLayers( 'Mapa Poligonos Lineas' );
+
+        myMap2 = new msMap(document.getElementById("dc_main2"));
+        myMap2.setActionNone();
+        myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
+        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/Cali.map');
+        myMap2.setLayers( 'Mapa Poligonos Lineas' );
+        myMap1.setReferenceMap(myMap2);
+
+        myMap1.redraw();
+        myMap2.redraw();
+        chgLayers();
+
+        var seleclayer = -1;
+        var lyactive = false;
+        var lejendactive = false;
+
+        function chgLayers(){
+            var list = "Layers ";
+            var objForm = document.forms[0];
+            for(i=0;i<document.forms[0].length; i++){
+                if(objForm.elements["layer[" + i + "]"].checked ){
+                    list = list + objForm.elements["layer[" + i + "]"].value + " ";
+                }
+
+            }
+            myMap1.setLayers( list );
+            myMap1.redraw();
+            myMap2.setLayers( list );
+            myMap2.redraw();
+        }
+
+ 
+
+    </script>
 
     </body>
 

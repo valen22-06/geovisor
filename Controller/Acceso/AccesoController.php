@@ -21,6 +21,7 @@ class AccesoController {
 
         
         if (!empty($usuario)){
+            echo "llega";
             foreach($usuario as $usu){
                 if($hash == $usu['contrasenia']){
                     $_SESSION['id_usu'] = $usu['id_usuario'];
@@ -28,12 +29,12 @@ class AccesoController {
                     $_SESSION['nombre1'] = $usu['primer_nombre'];
                     $_SESSION['nombre2'] = $usu['segundo_nombre'];
                     $_SESSION['apellido1'] = $usu['primer_apellido'];
-                    $_SESSION['apellido2']=$usu['segundo_apellido'];
-                    $_SESSION['email']=$usu['correo'];
-                    $_SESSION['telefono']=$usu['telefono'];
-                    $_SESSION['direccion_residencia']=$usu['direccion_residencia'];
-                    $_SESSION['nacimiento']=$usu['fecha_nacimiento'];
-                    $_SESSION['rol']=$usu['id_rol'];
+                    $_SESSION['apellido2'] = $usu['segundo_apellido'];
+                    $_SESSION['email'] = $usu['correo'];
+                    $_SESSION['telefono'] = $usu['telefono'];
+                    $_SESSION['direccion_residencia'] = $usu['direccion_residencia'];
+                    $_SESSION['nacimiento'] = $usu['fecha_nacimiento'];
+                    $_SESSION['rol'] = $usu['id_rol'];
                     $_SESSION['estado']=$usu['id_estado'];
                     
 

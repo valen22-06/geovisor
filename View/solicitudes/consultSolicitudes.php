@@ -9,8 +9,8 @@
                 <select class="form-control" name="tipo_soliC" id="tipo_solicitudConsult" data-url="<?php echo getUrl("Solicitudes","Solicitudes","cargarConsult",false,"ajax")?>">
             <option selected disabled>Seleccione un tipo de solicitud</option>
             <option value="1">Accidente</option> 
-            <option value="2">Nueva se&ntilde;alizacion</option>
-            <option value="3">Se&ntilde;alizacion en mal estado</option>
+            <option value="2">Nueva señalizacion</option>
+            <option value="3">Señalizacion en mal estado</option>
             <option value="4">Reductor nuevo</option>
             <option value="5">Reductor en mal esatdo</option>
             <option value="6">Via en mal estado</option>
