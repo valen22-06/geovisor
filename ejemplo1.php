@@ -8,7 +8,7 @@ if(!extension_loaded("MapScript")){
 
 $mapObject = ms_newMapObj("Cali.map");
 
-// $map_pt = click2map($_POST['image_x'], $_POST['image_y']);
+$map_pt = click2map($_POST['image_x'], $_POST['image_y']);
 
 $pt = ms_newPointObj();
 $pt -> setXY($map_pt[0], $map_pt[1]);
@@ -18,17 +18,17 @@ $mapImage = $mapObject -> draw();
 
 $urlImage = $mapImage -> saveWebImage();
 
-// function click2map($click_x,$click_y)
-// {
-//     global $mapObject;
-//     $e = $mapObject->extent;
-//     $x_pct = ($click_x/$mapObject->width);
-//     $y_pct = 1- ($click_y/$mapObject->height);
-//     $x_map = $e->minx + (($e->maxx-$e->minx)*$x_pct);
-//     $y_map = $e->miny + (($e->maxy-$e->miny)*$y_pct);
+function click2map($click_x,$click_y)
+{
+    global $mapObject;
+    $e = $mapObject->extent;
+    $x_pct = ($click_x/$mapObject->width);
+    $y_pct = 1- ($click_y/$mapObject->height);
+    $x_map = $e->minx + (($e->maxx-$e->minx)*$x_pct);
+    $y_map = $e->miny + (($e->maxy-$e->miny)*$y_pct);
 
-//     return array($x_map,$y_map);
-// }
+    return array($x_map,$y_map);
+}
 
 ?>
 
@@ -68,14 +68,14 @@ $urlImage = $mapImage -> saveWebImage();
     <body>
 
         <form action="ejemplo1.php" method="post">
-        <div class="mscross" style="overflow: hidden; width: 550px; height: 500px; 
+        <!-- <div class="mscross" style="overflow: hidden; width: 550px; height: 500px; 
     -moz-user-select: none; position: relative; left: 300px; border: 2px solid #445b59;" id="dc_main">
 
-</div>
-<input type="image" name="image" src="<?php echo $urlImage; ?>" border=1>    
+</div> -->
+            <input type="image" name="image" src="<?php echo $urlImage; ?>" border=1>    
         </form>
 
-        <div id="Layer2">
+        <!-- <div id="Layer2">
 
         <form name="select_layers">
 
@@ -98,27 +98,27 @@ $urlImage = $mapImage -> saveWebImage();
         <div style="overflow: auto; width: 140px; height: 140px;
         -moz-user-select: none; position: relative; z-index: 100;" id="dc_main2">
         </div>
-    </div>
+    </div> -->
 
 
         <!-- <p> -->
-            <b>Coordenadas en pixeles:</b> //<?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
+            <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
 
             <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?>
         <!-- </p> -->
         <?php
-                // $obj = new MasterModel();
+                $obj = new MasterModel();
 
-                // $result = $obj -> autoIncrement('puntos')-2;
+                $result = $obj -> autoIncrement('puntos')-1;
                 
 
 
-                // $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
-                // if ($obj->insert($sql)) {
-                //     echo "Se inserto correctamente";
-                // } else {
-                //     echo "Se ha producido un error al insertar";
-                // }
+                $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
+                if ($obj->insert($sql)) {
+                    echo "Se inserto correctamente";
+                } else {
+                    echo "Se ha producido un error al insertar";
+                }
             ?>
 
 
