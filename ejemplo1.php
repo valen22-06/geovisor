@@ -139,6 +139,9 @@ function click2map($click_x,$click_y)
         myMap2.setLayers( 'Mapa Poligonos Lineas' );
         myMap1.setReferenceMap(myMap2);
 
+        var  infola = new msTool('crear punto',infolay,'misc/img/lugar.png',investiguen);
+        myMap1.getToolBar(0).addMapTool(infola);
+
         myMap1.redraw();
         myMap2.redraw();
         chgLayers();
