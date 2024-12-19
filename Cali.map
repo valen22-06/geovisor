@@ -38,26 +38,20 @@ END
 
 
 
-# LAYER 
-    #CONNECTIONTYPE postgis
-#NAME "Comuna"
-#STATUS Off
-        #CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
-        #DATA "geom FROM (SELECT * FROM six) as six using unique gid SRID=-1"
-#TYPE POLYGON
-#LABELITEM "Comuna"
-#CLASS
-#STYLE      
-#COLOR 146 146 146
-#OUTLINECOLOR 244 244 244
-#END
-#LABEL
-#SIZE SMALL
-#COLOR 0 0 0
-#END
-#END
-#END
-
+LAYER
+    NAME "Comuna"
+    STATUS ON
+    CONNECTIONTYPE postgis
+    CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
+    DATA "geom FROM (SELECT * FROM six) as cinco using unique gid SRID=-1"
+    TYPE POLYGON
+    CLASS
+        STYLE
+            COLOR 146 146 146
+            OUTLINECOLOR 0 0 0
+        END
+    END
+END
 
 
 

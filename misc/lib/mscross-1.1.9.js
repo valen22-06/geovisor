@@ -1897,7 +1897,6 @@ function msToolbar(p_msMap, _control, _default)
   var _iconPanButton        = 'misc/img/alpha_button_pan.png';
   var _iconZoominButton     = 'misc/img/alpha_button_zoomIn.png';
   var _iconZoomoutButton    = 'misc/img/alpha_button_zoomOut.png';
-  var _iconubiButton   = 'misc/img/lugar.png';
 
 
   this.getTag = function(){return _tagToolbar;}
@@ -1971,13 +1970,13 @@ function msToolbar(p_msMap, _control, _default)
     var t_zoom    = new msTool('Zoom', _msMap.setActionZoombox, _iconZoomboxButton, function(e, map, x, y){map.zoomStart(e);});
     var t_zoomin  = new msTool('Zoom In', _msMap.setActionZoomIn, _iconZoominButton);
     var t_zoomout = new msTool('Zoom Out', _msMap.setActionZoomOut, _iconZoomoutButton);
-    var t_lugar = new msTool('Lugar', _msMap.setActionNone1, _iconubiButton);
+    
     this.addMapTool(t_fullext);
     this.addMapTool(t_pan);
     this.addMapTool(t_zoom);
     this.addMapTool(t_zoomin);
     this.addMapTool(t_zoomout);
-    this.addMapTool(t_lugar);
+    
   }
 
   this.redraw();
