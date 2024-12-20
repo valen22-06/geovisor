@@ -141,8 +141,8 @@ $urlImage = $mapImage -> saveWebImage();
         myMap2.setLayers( 'Mapa Comuna Puntos' );
         myMap1.setReferenceMap(myMap2);
 
-        // var  infola = new msTool('crear punto',infolay,'misc/img/lugar.png',investiguen);
-        // myMap1.getToolBar(0).addMapTool(infola);
+        var  infola = new msTool('crear punto',infolay,'misc/img/lugar.png',investiguen);
+        myMap1.getToolBar(0).addMapTool(infola);
 
         myMap1.redraw();
         myMap2.redraw();
@@ -173,7 +173,7 @@ $urlImage = $mapImage -> saveWebImage();
             seleccionado=true;
         }
 
-        function objectoAjax(){
+        function objetoAjax(){
             var xmlhttp = false;
 
             try {
@@ -190,31 +190,29 @@ $urlImage = $mapImage -> saveWebImage();
                     return xmlhttp;
 
                 }
-
-
             }
 
             function investiguen(event, map, x, y, xx, yy){
-            if(seleccionado){
-                alert("Click sobre las coordenadas : x " +x+ "y: " +y+ "y reales: x" +xx+ "y: " +yy);
-                consultar1 = new objectoAjax();
+                if(seleccionado){
+                    alert("Click sobre las coordenadas : x " +x+ "y: " +y+ "y reales: x" +xx+ "y: " +yy);
+                    consultar1 = new objetoAjax();
 
-                consultar1.open("GET","Insertar_punto.php?x=" +xx+ "&y=" +yy, true);
+                    consultar1.open("GET","Insertar_punto.php?x=" +xx+ "&y=" +yy, true);
 
-                consultar1.onreadystatechange=funcion(){
-                    if(consultar1.readyState==4){
-                        var result = consultar1.responseText;
-                        alert(result);
+                    consultar1.onreadystatechange=funcion(){
+                        if(consultar1.readyState==4){
+                            var result = consultar1.responseText;
+                            alert(result);
+                        }
                     }
+
+                    consultar.send(null);
+                    seleccionado = false;
+                    map.getTagMap().style.cursor="default";
+
                 }
-
-                consultar.send(null);
-                seleccionado = false;
-                map.getTagMap().style.cursor="default";
-
             }
-        }
-        
+  
     }
 
         
