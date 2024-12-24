@@ -130,14 +130,14 @@ $urlImage = $mapImage -> saveWebImage();
         myMap1 = new msMap(document.getElementById("dc_main"),
             'standardRight' );
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/Cali.map');
+        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/partials/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap1.setLayers( 'Mapa Comuna Puntos' );
 
         myMap2 = new msMap(document.getElementById("dc_main2"));
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/Cali.map');
+        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/partials/Cali.map');
         myMap2.setLayers( 'Mapa Comuna Puntos' );
         myMap1.setReferenceMap(myMap2);
 

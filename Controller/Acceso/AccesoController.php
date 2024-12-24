@@ -21,9 +21,12 @@ class AccesoController {
 
         
         if (!empty($usuario)){
-            echo "llega";
+            
             foreach($usuario as $usu){
+
                 if($hash == $usu['contrasenia']){
+                    
+                    
                     $_SESSION['id_usu'] = $usu['id_usuario'];
                     $_SESSION['documento'] = $usu['numero_documento'];
                     $_SESSION['nombre1'] = $usu['primer_nombre'];
@@ -41,6 +44,7 @@ class AccesoController {
                     $_SESSION['auth'] = "ok";
                     redirect("index.php");
                 } else {
+                    echo "llega";
                     $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
                     redirect("login.php");
                     
@@ -48,6 +52,7 @@ class AccesoController {
             }    
 
         } else {
+            
             $_SESSION['error'] []= "Usuario y/o contrasenia incorrecto";
             
             redirect("login.php");
