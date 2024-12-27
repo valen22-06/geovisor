@@ -202,10 +202,8 @@ include_once '../Lib/helpers.php';
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="js/jquery.js"></script>
-  <script src="js/global.js"></script>
-
-<script src = "js/global.js"></script>
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/global.js"></script>
 
  </head>
 <center>
@@ -339,13 +337,13 @@ include_once '../Lib/helpers.php';
 
               <button type="submit" id="btn-env">Enviar <i class="glyphicon glyphicon-send"></i></button>
 
-              </form>
+        </form>
 
-              <button type="submit" id="btn-reg" action="<?php redirect('login.php') ?>">Volver</button>
 
             </div>
 
           </div>
+          <button type="submit" id="btn-reg" action="">Volver</button>
 
       </div>
 
