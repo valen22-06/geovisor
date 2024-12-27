@@ -1,6 +1,5 @@
 <?php
-    
-    include_once '../Lib/conf/connection.php';
+include_once 'C:/ms4w/Apache/htdocs/geovisor/Lib/conf/connection.php';
 
     Class MasterModel extends Connection{
         public function consult($sql) {
