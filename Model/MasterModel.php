@@ -1,7 +1,21 @@
 <?php
-include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor-1/Lib/conf/connection.php';
+include_once 'C:/ms4w/Apache/htdocs/geovisor/Lib/conf/connection.php';
 
     Class MasterModel extends Connection{
+
+        public function login($sql) {
+            $result = pg_query($this->getConnect(), $sql);
+
+            if (!$result) {
+                echo "Error en la consulta: " . pg_last_error($this->getConnect());
+                return null; 
+            $data = pg_fetch_assoc($result); 
+
+            return $data;
+            }
+            
+        }
+
         public function consult($sql) {
             $result = pg_query($this->getConnect(), $sql);
 
