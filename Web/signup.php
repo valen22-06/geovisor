@@ -205,8 +205,6 @@ include_once '../Lib/helpers.php';
   <script src="assets/js/jquery.js"></script>
   <script src="assets/js/global.js"></script>
 
-<script src = "js/global.js"></script>
-
  </head>
 <center>
 
@@ -339,13 +337,13 @@ include_once '../Lib/helpers.php';
 
               <button type="submit" id="btn-env">Enviar <i class="glyphicon glyphicon-send"></i></button>
 
-              </form>
+        </form>
 
-              <button type="submit" id="btn-reg" action="<?php redirect('login.php') ?>">Volver</button>
 
             </div>
 
           </div>
+          <button type="submit" id="btn-reg" action="">Volver</button>
 
       </div>
 

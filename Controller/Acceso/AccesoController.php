@@ -1,6 +1,6 @@
 <?php 
 
-include_once '../Model/Acceso/AccesoModel.php'; 
+include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor-1/Model/Acceso/AccesoModel.php'; 
 
 class AccesoController {
  
@@ -22,8 +22,11 @@ class AccesoController {
         
         if (!empty($usuario)){
             
-            foreach($usuario as $usu){
+            echo "Hash ingresado: " . $hash;
+                    echo "Hash en base de datos: " . $usuario['contrasenia'];
 
+            foreach($usuario as $usu){
+                
                 if($hash == $usu['contrasenia']){
                     
                     
@@ -44,7 +47,7 @@ class AccesoController {
                     $_SESSION['auth'] = "ok";
                     redirect("index.php");
                 } else {
-                    echo "llega";
+                    
                     $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
                     redirect("login.php");
                     
@@ -52,10 +55,8 @@ class AccesoController {
             }    
 
         } else {
-            
-            $_SESSION['error'] []= "Usuario y/o contrasenia incorrecto";
-            
-            redirect("login.php");
+            $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
+                    redirect("login.php");
         }
     }
 
