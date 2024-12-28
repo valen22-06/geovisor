@@ -56,11 +56,11 @@ include_once '../Lib/helpers.php';
                     <?php $_SESSION['form-ant'] = "iniciar"; ?>
                     <div class="mb-3 m-4">
                         <label for="documento" class="form-label text-dark"><b>Documento de identidad:</b></label>
-                        <input type="text" class="form-control bg-light text-dark" name="user" id="documento" placeholder="Tu Documento" required />
+                        <input type="text" class="form-control bg-light text-dark" name="user" id="documento" placeholder="Numero de documento" required />
                     </div>
                     <div class="mb-3 m-4">
                         <label for="clave" class="form-label text-dark"><b>Contraseña:</b></label>
-                        <input type="password" class="form-control bg-light text-dark" name="pass" id="clave" placeholder="Tu Contraseña" required />
+                        <input type="password" class="form-control bg-light text-dark" name="pass" id="clave" placeholder="Contraseña" required />
                     </div>
                     <div class="mt-5 text-center">
                     <button type="submit" id="btn-iniciar" class="btn btn-secondary w-50">Iniciar</button>
