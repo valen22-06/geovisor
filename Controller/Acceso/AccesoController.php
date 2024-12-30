@@ -20,10 +20,7 @@ class AccesoController {
         $hash= hash('sha256',$pass);
 
         
-        if (!empty($usuario)){
-            
-            echo "Hash ingresado: " . $hash;
-                    echo "Hash en base de datos: " . $usuario['contrasenia'];
+        if (!empty($usuario)){ 
 
             foreach($usuario as $usu){
                 
