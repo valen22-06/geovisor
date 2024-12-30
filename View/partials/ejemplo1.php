@@ -33,8 +33,8 @@ $urlImage = $mapImage -> saveWebImage();
 
 <html>
     <head>
-        <title>Ejemplo 1</title><link rel="stylesheet" type="text/css" href="misc/img/dc.css">
-        <script src="misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
+        <title>Ejemplo 1</title><link rel="stylesheet" type="text/css" href="../../misc/img/dc.css">
+        <script src="../../misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
         <style type="text/css">
         
         #layer1{ 
@@ -127,7 +127,7 @@ $urlImage = $mapImage -> saveWebImage();
             myMap1 = new msMap(document.getElementById('dc_main'), 
         'standardRight');
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/mapa/Cali.map');
+        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/View/partials/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap1.setLayers('Punto Comuna Mapa');
 
@@ -135,14 +135,14 @@ $urlImage = $mapImage -> saveWebImage();
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/mapa/Cali.map');
-        myMap2.setLayers('Nombre Poligonos Lineas Puntos');
+        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/View/partials/Cali.map');
+        myMap2.setLayers('Punto Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 
         myMap1.redraw(); 
         myMap2.redraw();
 
-        var infola = new msTool('crear punto', infolay,'misc/img/lugar.png', investiguen);
+        var infola = new msTool('crear punto', infolay,'../../misc/img/lugar.png', investiguen);
         myMap1.getToolbar(0).addMapTool(infola);
 
         chgLayers();

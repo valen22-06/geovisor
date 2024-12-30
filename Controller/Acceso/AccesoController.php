@@ -1,6 +1,6 @@
 <?php 
 
-include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor-1/Model/Acceso/AccesoModel.php'; 
+include_once 'C:/ms4w/Apache/htdocs/geovisor/Model/Acceso/AccesoModel.php'; 
 
 class AccesoController {
  
@@ -10,23 +10,25 @@ class AccesoController {
         $obj = new AccesoModel();
         $user = $_POST['user'];
         $pass = $_POST['pass'];
+
+        
         
         $sql = "SELECT * FROM usuarios WHERE numero_documento=$user";
 
         $params = array($user);
 
-        $usuario = $obj -> consult($sql);
+        $usuario = $obj -> login($sql);
 
         $hash= hash('sha256',$pass);
 
+
+        function hash_equals($known_string, $user_string) { if (!is_string($known_string) || !is_string($user_string)) { return false; } if (strlen($known_string) !== strlen($user_string)) { return false; } $res = $known_string ^ $user_string; $ret = 0; for ($i = strlen($res) - 1; $i >= 0; $i--) { $ret |= ord($res[$i]); } return !$ret; }
         
         if (!empty($usuario)){ 
 
             foreach($usuario as $usu){
-                
-                if($hash == $usu['contrasenia']){
-                    
-                    
+                $hashBd = $usu['contrasenia'];
+                if(hash_equals($hashBd, $hash)){
                     $_SESSION['id_usu'] = $usu['id_usuario'];
                     $_SESSION['documento'] = $usu['numero_documento'];
                     $_SESSION['nombre1'] = $usu['primer_nombre'];
@@ -39,14 +41,14 @@ class AccesoController {
                     $_SESSION['nacimiento'] = $usu['fecha_nacimiento'];
                     $_SESSION['rol'] = $usu['id_rol'];
                     $_SESSION['estado']=$usu['id_estado'];
-                    
-
                     $_SESSION['auth'] = "ok";
                     redirect("index.php");
                 } else {
+                    echo "Longitud del hash ingresado: " . strlen(trim($hash)) . "<br>";
+    echo "Longitud del hash en base de datos: " . strlen(trim($hashBd)) . "<br>";
                     
                     $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
-                    redirect("login.php");
+                    // redirect("login.php");
                     
                 }
             }    

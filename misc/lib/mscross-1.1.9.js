@@ -346,12 +346,6 @@ function msMap(DivTag, ControlType, p_protocol)
     _tagMap.style.cursor = "";
   }
 
-this.setActionNone1 = function()
-  {
-   
-//    _action = 'none';
-    _tagMap.style.cursor = "";
-  }
   this.setActionZoomIn = function()
   {
     if ( isNaN(_tagLoading.style.display) )
@@ -1892,12 +1886,11 @@ function msToolbar(p_msMap, _control, _default)
   var _tagMap = _msMap.getTagMap();
 
   // Toolbar Default Icons...
-  var _iconFullExtentButton = 'misc/img/alpha_button_fullExtent.png';
-  var _iconZoomboxButton    = 'misc/img/alpha_button_zoombox.png';
-  var _iconPanButton        = 'misc/img/alpha_button_pan.png';
-  var _iconZoominButton     = 'misc/img/alpha_button_zoomIn.png';
-  var _iconZoomoutButton    = 'misc/img/alpha_button_zoomOut.png';
-
+  var _iconFullExtentButton = '../../misc/img/alpha_button_fullExtent.png';
+  var _iconZoomboxButton    = '../../misc/img/alpha_button_zoombox.png';
+  var _iconPanButton        = '../../misc/img/alpha_button_pan.png';
+  var _iconZoominButton     = '../../misc/img/alpha_button_zoomIn.png';
+  var _iconZoomoutButton    = '../../misc/img/alpha_button_zoomOut.png';
 
   this.getTag = function(){return _tagToolbar;}
   this.hide = function(){_tagToolbar.style.display = 'none';}
@@ -1970,13 +1963,11 @@ function msToolbar(p_msMap, _control, _default)
     var t_zoom    = new msTool('Zoom', _msMap.setActionZoombox, _iconZoomboxButton, function(e, map, x, y){map.zoomStart(e);});
     var t_zoomin  = new msTool('Zoom In', _msMap.setActionZoomIn, _iconZoominButton);
     var t_zoomout = new msTool('Zoom Out', _msMap.setActionZoomOut, _iconZoomoutButton);
-    
     this.addMapTool(t_fullext);
     this.addMapTool(t_pan);
     this.addMapTool(t_zoom);
     this.addMapTool(t_zoomin);
     this.addMapTool(t_zoomout);
-    
   }
 
   this.redraw();
