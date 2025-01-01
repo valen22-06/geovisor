@@ -32,14 +32,14 @@ include_once '../Lib/helpers.php';
         <div class='alert alert-danger d-none' role='alert' id='error'></div>
 
         <?php
-        if (isset($_SESSION['errores'])) {
+        if (isset($_SESSION['error'])) {
             echo "<div class='alert alert-danger' role='alert'>";
-            foreach ($_SESSION['errores'] as $error) {
+            foreach ($_SESSION['error'] as $error) {
                 echo $error;
                 echo "<br>";
             }
             echo "</div>";
-            unset($_SESSION['errores']);
+            unset($_SESSION['error']);
         }
         ?>
 

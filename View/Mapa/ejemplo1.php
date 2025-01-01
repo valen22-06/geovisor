@@ -1,11 +1,11 @@
 <?php
-include_once '../../Model/Mapa/mapaModel.php';
+include_once '../Model/Mapa/mapaModel.php';
 
 if(!extension_loaded("MapScript")){
     dl('php_mapscript.'.PHP_SHLIB_SUFFIX);
 }
 
-$mapObject = ms_newMapObj("Cali.map");
+$mapObject = ms_newMapObj("C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map");
 
 // $map_pt = click2map($_POST['image_x'], $_POST['image_y']);
 
@@ -33,8 +33,8 @@ $urlImage = $mapImage -> saveWebImage();
 
 <html>
     <head>
-        <title>Ejemplo 1</title><link rel="stylesheet" type="text/css" href="../../misc/img/dc.css">
-        <script src="../../misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
+        <title>Ejemplo 1</title><link rel="stylesheet" type="text/css">
+        <script src="../misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
         <style type="text/css">
         
         #layer1{ 
@@ -42,8 +42,8 @@ $urlImage = $mapImage -> saveWebImage();
             width: 162px;
             height: 158px;
             z-index: 101;
-            left: 600px;
-            top: 26px;
+            left: 720px;
+            top: 200px;
         }
         #layer2{ 
             position: absolute;
@@ -52,8 +52,8 @@ $urlImage = $mapImage -> saveWebImage();
             width: 141px;
             height: 140px;
             z-index: 102;
-            left: 600px;
-            top: 216px;
+            left: 720px;
+            top: 360px;
             background-color: #CCCCCC;
         }
 
@@ -67,7 +67,7 @@ $urlImage = $mapImage -> saveWebImage();
 
 
     
-    <div class="mscross" style="overflow: hidden; width: 530px; height: 500px; -moz-user-select: none; position: relative;border: 2px solid #445b59;" id="dc_main">
+    <div class="mscross" style="overflow: hidden; width: 530px; height: 480px; top:30px; left: 80px; -moz-user-select: none; position: relative;border: 2px solid #445b59;" id="dc_main">
 
     </div>
 
@@ -103,9 +103,9 @@ $urlImage = $mapImage -> saveWebImage();
 
 
         <!-- <p> -->
-            <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
+            <!-- <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
 
-            <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?>
+            <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?> -->
         <!-- </p> -->
         <!-- <?php
                 // $obj = new MasterModel();
@@ -123,11 +123,11 @@ $urlImage = $mapImage -> saveWebImage();
             ?> -->
 
 <script type="text/javascript">
-        //<![CDATA[
+        
             myMap1 = new msMap(document.getElementById('dc_main'), 
         'standardRight');
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('/ms4w/Apache/htdocs/geovisor/View/partials/Cali.map');
+        myMap1.setMapFile('C:/ms4w/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap1.setLayers('Punto Comuna Mapa');
 
@@ -135,14 +135,14 @@ $urlImage = $mapImage -> saveWebImage();
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('/ms4w/Apache/htdocs/geovisor/View/partials/Cali.map');
+        myMap2.setMapFile('C:/ms4w/geovisor/View/Mapa/Cali.map');
         myMap2.setLayers('Punto Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 
         myMap1.redraw(); 
         myMap2.redraw();
 
-        var infola = new msTool('crear punto', infolay,'../../misc/img/lugar.png', investiguen);
+        var infola = new msTool('crear punto', infolay,'../misc/img/lugar.png', investiguen);
         myMap1.getToolbar(0).addMapTool(infola);
 
         chgLayers();

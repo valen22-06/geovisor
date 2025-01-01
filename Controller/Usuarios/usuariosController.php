@@ -145,6 +145,9 @@ class UsuariosController{
         $sql = "SELECT * FROM usuarios WHERE id_usuario = $usu_id";
         $usuarios = $obj->consult($sql);
 
+        $sql1 = "SELECT * FROM tipo_documento";
+        $tipo_documento =$obj->consult($sql1);
+
         include_once '../view/Usuarios/update.php';
 
     }
@@ -153,6 +156,8 @@ class UsuariosController{
 
         $obj = new UsuariosModel();
 
+        $usu_tipo = $_POST['tipo_documento'];
+        $usu_documento = $_POST['numero_documento'];
         $usu_id = $_SESSION['id_usu'];
         $usu_nombre1 = $_POST['name'];
         $usu_nombre2 = $_POST['secondName'];
@@ -165,97 +170,112 @@ class UsuariosController{
         
         
 
-        // if(empty($usu_documento)){
-        //     $_SESSION['errores'][]="El campo documento es requerido";
-        // }
-        // if(empty($usu_nombre1)){
-        //     $_SESSION['errores'][]="El campo nombre es requerido";
-        //     $validacion = false;
-        // }
+        if(empty($usu_documento)){
+            $_SESSION['errores'][]="El campo documento es requerido";
+        }
+        if(empty($usu_nombre1)){
+            $_SESSION['errores'][]="El campo nombre es requerido";
+            $validacion = false;
+        }
         
     
-        // if(empty($usu_apellido1)){
-        //     $_SESSION['errores'][]="El campo apellido es requerido";
-        //     $validacion = false;
-        // }
-        // if(empty($usu_apellido2)){
-        //     $_SESSION['errores'][]="El campo nombre es requerido";
-        //     $validacion = false;
-        // }
+        if(empty($usu_apellido1)){
+            $_SESSION['errores'][]="El campo apellido es requerido";
+            $validacion = false;
+        }
+        if(empty($usu_apellido2)){
+            $_SESSION['errores'][]="El campo nombre es requerido";
+            $validacion = false;
+        }
     
-        // if(empty($usu_correo)){
-        //     $_SESSION['errores'][]="El campo correo es requerido";
-        //     $validacion = false;
-        // }
-    
-        // if(empty($usu_clave)){
-        //     $_SESSION['errores'][]="El campo  clave es requerido";
-        //     $validacion = false;
-        // }
-    
-        // // if(empty($rol_id)){
-        // //     $_SESSION['errores'][]="El campo rol es requerido";
-        // //     $validacion = false;
-        // // }
-        // if(validarCamponum($usu_documento)==false){
-        //     $_SESSION['errores'][]="El campo documento solo admite numeros";
-        //     $validacion=false;
-        // }
-        // if (validarCampoLetras($usu_nombre1) == false) {
-        //     $_SESSION['errores'][]="El campo nombre solo debe contener letras";
-        //     $validacion = false;
-        // }
-        // if (validarCampoLetras($usu_nombre2) == false) {
-        //     $_SESSION['errores'][]="El campo nombre solo debe contener letras";
-        //     $validacion = false;
-        // }
-
-    
-        // if (validarCampoLetras($usu_apellido1) == false) {
-        //     $_SESSION['errores'][]="El campo apellido solo debe contener letras";
-        //     $validacion = false;
-        // }
-        // if (validarCampoLetras($usu_apellido2) == false) {
-        //     $_SESSION['errores'][]="El campo apellido solo debe contener letras";
-        //     $validacion = false;
-        // }
-    
-        // if(validarCorreo($usu_correo) == false){
-        //     $_SESSION['errores'][] = "El campo correo no cumple, verifica que coincida con example@gmail.com";
-        //     $validacion = false;
-        // }
-    
-        // if(validarClave($usu_clave)== false){
-        //     $_SESSION['errores'][] = "El campo clave debe contener un numero, un caracter especial, una mayuscula y ser de mas de 8 caracteres";
-        //     $validacion = false;
-        // }
-
-        $hash = password_hash($usu_clave, PASSWORD_DEFAULT);
-
-
-        if ($_SESSION['rol']==3) {
-            # code...
-        } elseif ($_SESSION['rol']==2){
-
-        } elseif ($_SESSION['rol']==1){
-
+        if(empty($usu_correo)){
+            $_SESSION['errores'][]="El campo correo es requerido";
+            $validacion = false;
         }
 
+        if(empty($usu_telefono)){
+            $_SESSION['errores'][]="El campo telefono es requerido";
+            $validacion = false;
+        }
+    
+        if(empty($usu_clave)){
+            $_SESSION['errores'][]="El campo  clave es requerido";
+            $validacion = false;
+        }
+    
+        if(empty($rol_id)){
+            $_SESSION['errores'][]="El campo rol es requerido";
+            $validacion = false;
+        }
+        if(validarNumeros($usu_documento)==false){
+            $_SESSION['errores'][]="El campo documento solo admite numeros";
+            $validacion=false;
+        }
+        if (validarCampoLetras($usu_nombre1) == false) {
+            $_SESSION['errores'][]="El campo nombre solo debe contener letras";
+            $validacion = false;
+        }
+        if (validarCampoLetras($usu_nombre2) == false) {
+            $_SESSION['errores'][]="El campo nombre solo debe contener letras";
+            $validacion = false;
+        }
+        if (validarCampoLetras($usu_apellido1) == false) {
+            $_SESSION['errores'][]="El campo apellido solo debe contener letras";
+            $validacion = false;
+        }
+        if (validarCampoLetras($usu_apellido2) == false) {
+            $_SESSION['errores'][]="El campo apellido solo debe contener letras";
+            $validacion = false;
+        }
+    
+        if(validarCorreo($usu_correo) == false){
+            $_SESSION['errores'][] = "El campo correo no cumple, verifica que coincida con example@gmail.com";
+            $validacion = false;
+        }
 
-        $sql = "UPDATE usuarios SET primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', contrasenia ='$hash' WHERE id_usuario = $usu_id";
-        // echo "Usuario ID: " . $usu_id;
-        // echo $sql;
+        if(validarNumeros($usu_telefono)==false){
+            $_SESSION['errores'][]="El campo documento solo admite numeros";
+            $validacion=false;
+        }
+    
+        if(validarClave($usu_clave)== false){
+            $_SESSION['errores'][] = "El campo clave debe contener un numero, un caracter especial, una mayuscula y ser de mas de 8 caracteres";
+            $validacion = false;
+        }
 
-        $ejecutar = $obj->update($sql);
-        echo $sql;
+        $hash= hash('sha256',$pass);
+
+
+            if ($_SESSION['rol']==3) {
+
+                $sql = "UPDATE usuarios SET correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', contrasenia ='$hash' WHERE id_usuario = $usu_id";
+
+            } elseif ($_SESSION['rol']==2){
+
+                $sql = "UPDATE usuarios SET primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion' WHERE id_usuario = $usu_id";
+    
+            } elseif ($_SESSION['rol']==1){
+                $sql = "UPDATE usuarios SET numero_documento = '$usu_documento', primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', contrasenia id_tipo_documento = '$usu_tipo', contrasenia='$hash' WHERE id_usuario = $usu_id";
+            }
+
+      
+        //     if($validacion){
+        //         if($ejecutar){
+        //             redirect(getUrl("Usuarios","Usuarios","getUsuarios"));
+        //         }else{
+        //             echo "Se ha producido un error al actualizar";
+        //         }
+        //     }
+
+
+
+
+        // $ejecutar = $obj->update($sql);
+        
 
         
 
-        if($ejecutar){
-            redirect(getUrl("Usuarios","Usuarios","getUsuarios"));
-        }else{
-            echo "Se ha producido un error al actualizar";
-        }
+        
 
 
     }

@@ -13,50 +13,48 @@ class AccesoController {
 
         
         
-        $sql = "SELECT * FROM usuarios WHERE numero_documento=$user";
+        $sql = "SELECT * FROM usuarios WHERE numero_documento= $1";
 
         $params = array($user);
-
-        $usuario = $obj -> login($sql);
+        
+        $usuario = $obj->login($sql, $params);
 
         $hash= hash('sha256',$pass);
 
-
-        function hash_equals($known_string, $user_string) { if (!is_string($known_string) || !is_string($user_string)) { return false; } if (strlen($known_string) !== strlen($user_string)) { return false; } $res = $known_string ^ $user_string; $ret = 0; for ($i = strlen($res) - 1; $i >= 0; $i--) { $ret |= ord($res[$i]); } return !$ret; }
+        $hashBd = $usuario['contrasenia'];
+        
         
         if (!empty($usuario)){
-            
-            
+            if($hash == $hashBd){
+                foreach($usuario as $usu){
+                        $_SESSION['id_usu'] = $usuario['id_usuario'];
+                        $_SESSION['documento'] = $usuario['numero_documento'];
+                        $_SESSION['nombre1'] = $usuario['primer_nombre'];
+                        $_SESSION['nombre2'] = $usuario['segundo_nombre'];
+                        $_SESSION['apellido1'] = $usuario['primer_apellido'];
+                        $_SESSION['apellido2'] = $usuario['segundo_apellido'];
+                        $_SESSION['email'] = $usuario['correo'];
+                        $_SESSION['telefono'] = $usuario['telefono'];
+                        $_SESSION['direccion_residencia'] = $usuario['direccion_residencia'];
+                        $_SESSION['nacimiento'] = $usuario['fecha_nacimiento'];
+                        $_SESSION['rol'] = $usuario['id_rol'];
+                        $_SESSION['estado'] = $usuario['id_estado'];
+                        $_SESSION['auth'] = "ok";
+                } 
 
-            foreach($usuario as $usu){
-                $hashBd = $usu['contrasenia'];
-                if(hash_equals($hashBd, $hash)){
-                    $_SESSION['id_usu'] = $usu['id_usuario'];
-                    $_SESSION['documento'] = $usu['numero_documento'];
-                    $_SESSION['nombre1'] = $usu['primer_nombre'];
-                    $_SESSION['nombre2'] = $usu['segundo_nombre'];
-                    $_SESSION['apellido1'] = $usu['primer_apellido'];
-                    $_SESSION['apellido2'] = $usu['segundo_apellido'];
-                    $_SESSION['email'] = $usu['correo'];
-                    $_SESSION['telefono'] = $usu['telefono'];
-                    $_SESSION['direccion_residencia'] = $usu['direccion_residencia'];
-                    $_SESSION['nacimiento'] = $usu['fecha_nacimiento'];
-                    $_SESSION['rol'] = $usu['id_rol'];
-                    $_SESSION['estado']=$usu['id_estado'];
-                    $_SESSION['auth'] = "ok";
-                    redirect("index.php");
-                } else {
-                    echo "Longitud del hash ingresado: " . strlen(trim($hash)) . "<br>";
-    echo "Longitud del hash en base de datos: " . strlen(trim($hashBd)) . "<br>";
+                
+                redirect('index.php');
+
+            } else {
+                    // echo "Longitud del hash ingresado: ". $hash ."<br>";
+                    // echo "Longitud del hash en base de datos: " . $hashBd . "<br>";
                     
                     $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
-                    // redirect("login.php");
-                    
-                }
-            }    
+                    redirect("login.php");     
+            }
 
         } else {
-            $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
+            $_SESSION['error'][] = "No hay coincidencias de un usuario con el numero de documento ingresado";
                     redirect("login.php");
         }
     }

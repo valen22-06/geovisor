@@ -347,7 +347,7 @@
                     </div> -->
                     <span class="profile-username">
                       <span class="op-7 text-dark fs-5">Hi,</span>
-                      <span class="fw-bold text-dark fs-5"><?php echo $_SESSION['nombre1']?></span>
+                      <span class="fw-bold text-dark fs-5"><?php echo $_SESSION['nombre1'];?></span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">

@@ -12,7 +12,7 @@ include_once '../View/partials/header.php';
                             if(isset($_GET['modulo'])){
                                 resolve();
                             }else{
-                                include_once '../View/partials/content.php';
+                                include_once '../View/Mapa/ejemplo1.php';
                             }
                         echo"</div>";
                     echo"</div>";
