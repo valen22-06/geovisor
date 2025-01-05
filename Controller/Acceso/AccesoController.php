@@ -46,11 +46,11 @@ class AccesoController {
                 redirect('index.php');
 
             } else {
-                    // echo "Longitud del hash ingresado: ". $hash ."<br>";
-                    // echo "Longitud del hash en base de datos: " . $hashBd . "<br>";
+                    echo "Longitud del hash ingresado: ". $hash ."<br>";
+                    echo "Longitud del hash en base de datos: " . $hashBd . "<br>";
                     
-                    $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
-                    redirect("login.php");     
+                    // $_SESSION['error'][] = "Usuario y/o contrasenia incorrecto";
+                    // redirect("login.php");     
             }
 
         } else {
