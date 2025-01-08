@@ -1,75 +1,82 @@
 $(document).ready(function(){
-    // $('#form').submit(function (event) {
-    //     event.preventDefault();
-    //     let mensajes = [];
-    //     $('#error').html('').fadeOut(500);
+    $('#form').submit(function (event) {
+        event.preventDefault();
+        let mensajes = [];
+        $('#error').html('');
 
-    //     let esValido = true;
+        let esValido = true;
 
-    //     const tipo_docu = $('#tipo_docu').val().trim();
-    //     if (tipo_docu === '') {
-    //         mensajes.push('Debe seleccionar un tipo de documento.');
-    //         esValido = false;
-    //     }
+        const tipo_docu = $('#tipo_docu').val().trim();
+        if (tipo_docu === '') {
+            mensajes.push('Debe seleccionar un tipo de documento.');
+            esValido = false;
+        }
 
-    //     const nombre = $('#name').val().trim();
-    //     if (nombre === '') {
-    //         mensajes.push('El campo nombre es obligatorio.');
-    //         esValido = false;
-    //     }
+        const nombre = $('#name').val().trim();
+        if (nombre === '') {
+            mensajes.push('El campo nombre es obligatorio.');
+            esValido = false;
+        }
 
-    //     const apellido = $('#apellido').val().trim();
-    //     if (apellido === '') {
-    //         mensajes.push('El campo apellido es obligatorio.');
-    //         esValido = false;
-    //     }
+        const apellido = $('#apellido').val().trim();
+        if (apellido === '') {
+            mensajes.push('El campo apellido es obligatorio.');
+            esValido = false;
+        }
 
-    //     const apellido1 = $('#segundoApellido').val().trim();
-    //     if (apellido1 === '') {
-    //         mensajes.push('El campo segundo apellido es obligatorio.');
-    //         esValido = false;
-    //     }
+        const apellido1 = $('#segundoApellido').val().trim();
+        if (apellido1 === '') {
+            mensajes.push('El campo segundo apellido es obligatorio.');
+            esValido = false;
+        }
 
-    //     const correo = $('#email').val().trim();
-    //     if (correo === '') {
-    //         mensajes.push('El campo correo es obligatorio.');
-    //         esValido = false;
-    //     }
+        const correo = $('#email').val().trim();
+        if (correo === '') {
+            mensajes.push('El campo correo es obligatorio.');
+            esValido = false;
+        }
 
-    //     const clave = $('#Rtpwd').val().trim();
-    //     if (clave === '') {
-    //         mensajes.push('El campo confirmar password es obligatorio.');
-    //         esValido = false;
-    //     }
+        const clave = $('#Rtpwd').val().trim();
+        if (clave === '') {
+            mensajes.push('El campo confirmar password es obligatorio.');
+            esValido = false;
+        }
 
 
-    //     const telefono = $('#telefono').val().trim();
-    //     if (telefono === '') {
-    //         mensajes.push('El campo teléfono es obligatorio.');
-    //         esValido = false;
-    //     }
+        const telefono = $('#telefono').val().trim();
+        if (telefono === '') {
+            mensajes.push('El campo teléfono es obligatorio.');
+            esValido = false;
+        }
 
-    //     const direccion = $('#direccion_residencia').val().trim();
-    //     if (direccion === '') {
-    //         mensajes.push('El campo dirección es obligatorio.');
-    //         esValido = false;
-    //     }
+        const direccion = $('#direccion_residencia').val().trim();
+        if (direccion === '') {
+            mensajes.push('El campo dirección es obligatorio.');
+            esValido = false;
+        }
 
-    //     const fecha_nac = $('#date').val().trim();
-    //     if (fecha_nac === '') {
-    //         mensajes.push('El campo fecha de nacimiento es obligatorio.');
-    //         esValido = false;
-    //     }
+        const fecha_nac = $('#date').val().trim();
+        if (fecha_nac === '') {
+            mensajes.push('El campo fecha de nacimiento es obligatorio.');
+            esValido = false;
+        }
 
-    //     if (esValido==true) {
-    //         alert('Formulario válido. Enviando datos...');
-    //         $('#error').fadeOut(500);
-    //         this.submit(); 
-    //     } else {
-    //         $('#error').html(mensajes.map(msg => `${msg}<br>`).join(''));
-    //         $('#error').removeClass('d-none');
-    //     }
-    // });
+        if (esValido==true) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'El formulario se ha enviado correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                this.reset();
+            });
+            $('#error').fadeOut(500);
+            this.submit(); 
+        } else {
+            $('#error').html(mensajes.map(msg => `${msg}<br>`).join(''));
+            $('#error').removeClass('d-none');
+        }
+    });
     
         $(document).on('keyup','#buscarAccidente',function(){
             let buscar = $(this).val();

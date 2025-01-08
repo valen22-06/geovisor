@@ -1,10 +1,10 @@
 <?php
 
-include_once '../Lib/helpers.php';
+include_once '../../Lib/helpers.php';
 
 ?>
-<script src = "assets/js/jquery.js"></script>
-<script src = "assets/js/global.js"></script>
+<script src = "../assets/js/jquery.js"></script>
+<script src = "../assets/js/global.js"></script>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -50,31 +50,24 @@ include_once '../Lib/helpers.php';
 
             <div class="card-body shadow-lg bg-light">
 
-                <form class="mt-4" action="<?php echo getUrl('Acceso', 'Acceso', 'getCreate', false, 'ajax'); ?>" method="post">
-                <?php $_SESSION['form-ant'] = "iniciar"; ?>
+                <form class="mt-4" action="<?php echo getUrl('Acceso', 'Acceso', 'recuperar_contrasenia', false, 'ajax'); ?>" method="post">
+                    
                     <div class="mb-3 m-4">
                         <label for="documento" class="form-label text-dark"><b>Documento de identidad:</b></label>
                         <input type="text" class="form-control bg-light text-dark" name="user" id="documento" placeholder="Numero de documento" required />
                     </div>
-                    <div class="mb-3 m-4">
-                        <label for="clave" class="form-label text-dark"><b>Contraseña:</b></label>
-                        <input type="password" class="form-control bg-light text-dark" name="pass" id="clave" placeholder="Contraseña" required />
-                    </div>
+                    
                     <div class="mt-5 text-center">
-                    <button type="submit" id="btn-iniciar" class="btn btn-secondary w-50">Iniciar</button>
+                    <button type="submit" id="btn-recuperar" class="btn btn-secondary w-50">Recuperar</button>
                     </div>
                 </form>
 
                 <div class="mt-3 mb-4 text-center">
-                    <a href="<?php echo getUrl('Usuarios', 'Usuarios', 'getCreate', false, 'ajax'); ?>">
-                        <?php $_SESSION['form-ant'] = "reg"; ?>
-                        <button type="button" id="btn-form" class="btn btn-secondary w-50">Registrar</button>
-                    </a>
-                    <br> <br>
-                    <a href="Recuperar/recuperar_contrasenia.php">
-¿Olvidaste tu contraseña?
+                    <a href="../login.php">
+                        <button type="button" id="volver" class="btn btn-secondary w-50">Volver</button>
                     </a>
                 </div>
+                
             </div>
         </div>
     </div>

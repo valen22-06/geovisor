@@ -5,7 +5,7 @@ if(!extension_loaded("MapScript")){
     dl('php_mapscript.'.PHP_SHLIB_SUFFIX);
 }
 
-$mapObject = ms_newMapObj("C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map");
+$mapObject = ms_newMapObj("../View/Mapa/Cali.map");
 
 // $map_pt = click2map($_POST['image_x'], $_POST['image_y']);
 
@@ -34,7 +34,7 @@ $urlImage = $mapImage -> saveWebImage();
 <html>
     <head>
         <title>Ejemplo 1</title><link rel="stylesheet" type="text/css">
-        <script src="../misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
+        <script src="..\View\Mapa\misc\lib\mscross-1.1.9.js" type="text/javascript"></script>
         <style type="text/css">
         
         #layer1{ 
@@ -45,6 +45,7 @@ $urlImage = $mapImage -> saveWebImage();
             left: 720px;
             top: 200px;
         }
+
         #layer2{ 
             position: absolute;
             padding: 20px;
@@ -54,7 +55,12 @@ $urlImage = $mapImage -> saveWebImage();
             z-index: 102;
             left: 720px;
             top: 360px;
-            background-color: #CCCCCC;
+            color : rgb(255, 255, 255);
+            background-color:rgb(168, 160, 160);
+        }
+
+       .chbox input:checked{
+        background-color:rgb(190, 29, 129);
         }
 
 
@@ -66,68 +72,72 @@ $urlImage = $mapImage -> saveWebImage();
     <body>
 
 
-    
+    <div style="overflow-y:scroll;">
+
     <div class="mscross" style="overflow: hidden; width: 530px; height: 480px; top:30px; left: 80px; -moz-user-select: none; position: relative;border: 2px solid #445b59;" id="dc_main">
 
+</div>
+
+
+
+    <div id="Layer2">
+
+    <form name="select_layers">
+
+        <p align="left">
+            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[0]"
+                value="Mapa">
+            <strong>Mapa</strong>
+
+        <p align="left">
+            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[1]"
+                value="Comuna">
+            <strong>Comuna</strong>
+    
+        <p align="left">
+            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[2]"
+                value="Puntos">
+            <strong>Puntos</strong>
+            
+    </form>
+</div> 
+
+<div id="Layer1">
+    <div style="overflow: auto; width: 140px; height: 140px;
+    -moz-user-select: none; position: relative; z-index: 100;" id="dc_main2">
     </div>
+</div> 
 
 
+    <!-- <p> -->
+        <!-- <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
 
-        <div id="Layer2">
+        <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?> -->
+    <!-- </p> -->
+    <!-- <?php
+            // $obj = new MasterModel();
 
-        <form name="select_layers">
-
-            <p align="left">
-                <input CHECKED onclick="chgLayers()" type="checkbox" name="layer[0]"
-                    value="Mapa">
-                <strong>Mapa</strong>
-
-            <p align="left">
-                <input CHECKED onclick="chgLayers()" type="checkbox" name="layer[1]"
-                    value="Comuna">
-                <strong>Comuna</strong>
-        
-            <p align="left">
-                <input CHECKED onclick="chgLayers()" type="checkbox" name="layer[2]"
-                    value="Puntos">
-                <strong>Puntos</strong>
-                
-        </form>
-    </div> 
-
-    <div id="Layer1">
-        <div style="overflow: auto; width: 140px; height: 140px;
-        -moz-user-select: none; position: relative; z-index: 100;" id="dc_main2">
-        </div>
-    </div> 
+            // $result = $obj -> autoIncrement('puntos')-1;
+            
 
 
-        <!-- <p> -->
-            <!-- <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
+            // $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
+            // if ($obj->insert($sql)) {
+            //     echo "Se inserto correctamente";
+            // } else {
+            //     echo "Se ha producido un error al insertar";
+            // }
+        ?> -->
 
-            <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?> -->
-        <!-- </p> -->
-        <!-- <?php
-                // $obj = new MasterModel();
-
-                // $result = $obj -> autoIncrement('puntos')-1;
-                
-
-
-                // $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
-                // if ($obj->insert($sql)) {
-                //     echo "Se inserto correctamente";
-                // } else {
-                //     echo "Se ha producido un error al insertar";
-                // }
-            ?> -->
+    </div>
+    
 
 <script type="text/javascript">
         
             myMap1 = new msMap(document.getElementById('dc_main'), 
         'standardRight');
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('C:/ms4w/geovisor/View/Mapa/Cali.map');
+        myMap1.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap1.setLayers('Punto Comuna Mapa');
 
@@ -135,14 +145,14 @@ $urlImage = $mapImage -> saveWebImage();
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('C:/ms4w/geovisor/View/Mapa/Cali.map');
+        myMap2.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap2.setLayers('Punto Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 
         myMap1.redraw(); 
         myMap2.redraw();
 
-        var infola = new msTool('crear punto', infolay,'../misc/img/lugar.png', investiguen);
+        var infola = new msTool('crear punto', infolay,'../View/Mapa/misc/img/lugar.png', investiguen);
         myMap1.getToolbar(0).addMapTool(infola);
 
         chgLayers();

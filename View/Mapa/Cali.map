@@ -7,8 +7,8 @@ STATUS ON
 EXTENT -76.5928 3.33181  -76.4613 3.50587
 SHAPEPATH "shape"
 
- FONTSET "../misc/fonts/fonts.txt"
- SYMBOLSET "../misc/symbols/symbols.sym"
+ FONTSET "misc/fonts/fonts.txt"
+ SYMBOLSET "misc/symbols/symbols.sym"
 
 IMAGECOLOR 141 170 133
 UNITS dd

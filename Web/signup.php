@@ -135,6 +135,7 @@ include_once '../Lib/helpers.php';
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery.js"></script>
   <script src="assets/js/global.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>

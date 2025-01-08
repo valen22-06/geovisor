@@ -59,6 +59,66 @@ class AccesoController {
         }
     }
 
+    public function recuperar_contrasenia(){
+        
+        use PHPMailer\PHPMailer\PHPMailer;
+        use PHPMailer\PHPMailer\SMTP;
+        use PHPMailer\PHPMailer\Exception;
+
+        require 'PHPMAILER/Exception.php';
+        require 'PHPMAILER/PHPMailer.php';
+        require 'PHPMAILER/SMTP.php';
+
+        $num_docu = $_POST[user];
+        $obj = new usuariosModel();
+        $sql="SELECT correo WHERE numero_documento= $num_docu";
+        $usu = $obj->consult($sql);
+
+        if (!empty($usu)) {
+
+            $mail = new PHPMailer(true);
+
+            try {
+              
+                $mail->isSMTP();                                            
+                $mail->Host       = 'smtp-mail.outlook.com';                     
+                $mail->SMTPAuth   = true;                                   
+                $mail->Username   = 'grupogeovision@outlook.com';                     
+                $mail->Password   = 'Geovision2024';          
+                $mail->Port       = 587;
+            
+                //Recipients
+                $mail->setFrom('grupogeovision@outlook.com', 'Geovision');
+                $mail->addAddress('estudiar456@gmail.com', 'Querido usuario');     
+
+            
+                //Content
+                $mail->isHTML(true);                                  
+                $mail->Subject = 'Recuperacion de contraseña';
+                $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+
+
+        } else {
+            // <script>
+            // Swal.fire({
+            //     title: 'Error',
+            //     text: 'No hay coincidencias de un usuario con el numero de documento ingresado.',
+            //     icon: 'error',
+            //     confirmButtonText: 'Aceptar'
+            // });
+            // </script>
+            echo "no existe este usuario";
+        }
+    
+}
+
     public function logout(){
         session_destroy();
        redirect("login.php");
