@@ -50,7 +50,7 @@ include_once '../../Lib/helpers.php';
 
             <div class="card-body shadow-lg bg-light">
 
-                <form class="mt-4" action="<?php echo getUrl('Acceso', 'Acceso', 'recuperar_contrasenia', false, 'ajax'); ?>" method="post">
+                <form class="mt-4" action="<?php echo getUrl('Acceso', 'Acceso', 'recuperar_contrasenia', false, '../ajax'); ?>" method="post">
                     
                     <div class="mb-3 m-4">
                         <label for="documento" class="form-label text-dark"><b>Documento de identidad:</b></label>

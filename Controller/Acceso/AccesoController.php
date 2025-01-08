@@ -60,25 +60,19 @@ class AccesoController {
     }
 
     public function recuperar_contrasenia(){
-        
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\SMTP;
-        use PHPMailer\PHPMailer\Exception;
 
-        require 'PHPMAILER/Exception.php';
-        require 'PHPMAILER/PHPMailer.php';
-        require 'PHPMAILER/SMTP.php';
+        require '../Web/Recuperar/PHPMAILER/PHPMailerAutoload.php';
 
         $num_docu = $_POST[user];
-        $obj = new usuariosModel();
-        $sql="SELECT correo WHERE numero_documento= $num_docu";
+        $obj = new AccesoModel();
+        $sql="SELECT correo from usuarios WHERE numero_documento= $num_docu";
         $usu = $obj->consult($sql);
 
         if (!empty($usu)) {
 
-            $mail = new PHPMailer(true);
+            $mail = new PHPMailer;
 
-            try {
+       
               
                 $mail->isSMTP();                                            
                 $mail->Host       = 'smtp-mail.outlook.com';                     
@@ -98,11 +92,13 @@ class AccesoController {
                 $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             
-                $mail->send();
-                echo 'Message has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
+
+                if(!$mail->send()) {
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    echo 'Message has been sent';
+                }
 
 
         } else {
@@ -114,7 +110,7 @@ class AccesoController {
             //     confirmButtonText: 'Aceptar'
             // });
             // </script>
-            echo "no existe este usuario";
+                echo "no existe este usuario";
         }
     
 }
