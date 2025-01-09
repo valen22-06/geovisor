@@ -23,7 +23,6 @@
                     <th>Id</th>
                     <th>Fecha</th>
                     <th>Observacion</th>
-                    <th>Direccion</th>
                     <th>Orientacion</th>
                     <th>Categoria</th>
                     <th>Tipo de Señalizacion</th>
@@ -37,17 +36,16 @@
                 $clase="";
                 $texto="";
                 echo "<tr>";
-                echo "<td>".$sen['id_senializacion_vial_nueva']."</td>";
-                echo "<td>".$sen['fecha']."</td>";
-                echo "<td>".$sen['descripcion']."</td>";
-                echo "<td>".$sen['direccion']."</td>";
-                echo "<td>".$sen['nombre_o']."</td>";
-                echo "<td>".$sen['nombre_c_s']."</td>";
-                echo "<td>".$sen['tipo_senializacion']."</td>";
+                echo "<td>".$senializacion['id_senializacion_vial_nueva']."</td>";
+                echo "<td>".$senializacion['fecha']."</td>";
+                echo "<td>".$senializacion['descripcion']."</td>";
+                echo "<td>".$senializacion['nombre_o']."</td>";
+                echo "<td>".$senializacion['nombre_c_s']."</td>";
+                echo "<td>".$senializacion['tipo_senializacion']."</td>";
                 echo "<td>";
                 echo"<form action='getUrl('Senializacion', 'Senializacion', 'postUpdateStatus');' method='post' class='mt-4'>";
                 echo "<select class='form-select' name='id' id='id'>";
-                echo "<option disabled selected>".($sen['edescripcion'])."</option>";
+                echo "<option disabled selected>".($senializacion['edescripcion'])."</option>";
                 foreach ($estado as $est) {
                 echo "<option value='".($est['id_estado'])."'>".($est['nombre_estado'])."</option>";
                 }

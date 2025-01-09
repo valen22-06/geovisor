@@ -151,55 +151,19 @@
             $obj = new solicitudesModel();
 
             $via_danio=$_POST['tipo_danio'];
-            $via_via=$_POST['tipo_via'];
-            $via_numvia=$_POST['numVia'];
-            $via_letra= $_POST['letra'];
-            $via_com= $_POST['complemento'];
-            $via_num= $_POST['num'];
-            $via_letra2= $_POST['letra2'];
-            $via_com2= $_POST['complemento2'];
             $via_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
 
 
-            $dire=$via_via.' '.$via_numvia.' '.$via_letra.' '.$via_com.' '.$via_num.' '.$via_letra2.' '.$via_com2;
-            $validacion = true; 
+           $validacion = true; 
 
             if (empty($via_danio)) {
                 $_SESSION['errores'][] = "El campo daño es requerido";
                 $validacion = false;
             }
-            if (empty($via_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
-            if (empty($via_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($via_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($via_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($via_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($via_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($via_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
-                $validacion = false;
-            }
             if ($validacion) {
                 $id = $obj->autoIncrement("via_mal_estado");
-                $sql = "INSERT INTO via_mal_estado (id_via_mal_estado, descripcion, direccion, id_danio, id_usuario, id_estado) VALUES ($id,'$via_comentario', '$dire',$via_danio, $id_usu, 3 )";
+                $sql = "INSERT INTO via_mal_estado (id_via_mal_estado, descripcion, id_danio, id_usuario, id_estado) VALUES ($id,'$via_comentario',$via_danio, $id_usu, 3 )";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
@@ -244,19 +208,11 @@
             // $redu_fecha=$_POST['date'];
             $redu_tipo=$_POST['tipo_reductor'];
             $redu_danio=$_POST['tipo_danio'];
-            $redu_via=$_POST['tipo_via'];
-            $redu_numvia=$_POST['numVia'];
-            $redu_letra= $_POST['letra'];
-            $redu_com= $_POST['complemento'];
-            $redu_num= $_POST['num'];
-            $redu_letra2= $_POST['letra2'];
-            $redu_com2= $_POST['complemento2'];
             $redu_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
 
 
-            $dire= $redu_via.' '.$redu_numvia.' '.$redu_letra.' '.$redu_com.' '.$redu_num.' '.$redu_letra2.' '.$redu_com2;
-            $validacion = true; 
+           $validacion = true; 
 
             
             if (empty($redu_cat_redu)) {
@@ -267,43 +223,11 @@
             //     $_SESSION['errores'][] = "El campo fecha es requerido";
             //     $validacion = false;
             // }
-            if (empty($redu_tipo)) {
-                $_SESSION['errores'][] = "El campo tipo es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
-                $validacion = false;
-            }
             
 
             if ($validacion) {
                 $id = $obj->autoIncrement("reductores_malEstado");
-                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, direccion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado) VALUES ($id,'$redu_comentario', '$dire', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3 )";
+                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado) VALUES ($id,'$redu_comentario', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3 )";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
@@ -345,65 +269,25 @@
             $redu_cat_redu=$_POST['cat_reductor'];
             // $redu_fecha=$_POST['date'];
             $redu_tipo=$_POST['tipo_reductor'];
-            $redu_via=$_POST['tipo_via'];
-            $redu_numvia=$_POST['numVia'];
-            $redu_letra= $_POST['letra'];
-            $redu_com= $_POST['complemento'];
-            $redu_num= $_POST['num'];
-            $redu_letra2= $_POST['letra2'];
-            $redu_com2= $_POST['complemento2'];
             $redu_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
 
-
-            $dire= $redu_via.' '.$redu_numvia.' '.$redu_letra.' '.$redu_com.' '.$redu_num.' '.$redu_letra2.' '.$redu_com2;
             $validacion = true; 
             
             if (empty($redu_cat_redu)) {
                 $_SESSION['errores'][] = "El campo ctegoria es requerido";
                 $validacion = false;
             }
-            // if (empty($redu_fecha)) {
-            //     $_SESSION['errores'][] = "El campo fecha es requerido";
-            //     $validacion = false;
-            // }
+
             if (empty($redu_tipo)) {
                 $_SESSION['errores'][] = "El campo tipo es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($redu_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
                 $validacion = false;
             }
             
 
             if ($validacion) {
                 $id = $obj->autoIncrement("reductores_nuevo");
-                $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, direccion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado) VALUES ($id,'$redu_comentario', '$dire',$redu_cat_redu,$redu_tipo,$id_usu,3 )";
+                $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado) VALUES ($id,'$redu_comentario',$redu_cat_redu,$redu_tipo,$id_usu,3 )";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
@@ -454,53 +338,15 @@
             $sen_cat_senializacion=$_POST['cat_sen'];
             $sen_t_sen=$_POST['t_sen'];
             $sen_danio=$_POST['tipo_danio'];
-            $sen_via=$_POST['tipo_via'];
-            $sen_numvia=$_POST['numVia'];
-            $sen_letra= $_POST['letra'];
-            $sen_com= $_POST['complemento'];
-            $sen_num= $_POST['num'];
-            $sen_letra2= $_POST['letra2'];
-            $sen_com2= $_POST['complemento2'];
-            $sen_comentario=$_POST['comentario'];
-            $sen_tipo_via=$_POST['tipo_via'];
             $id_usu = $_SESSION ['id_usu'];
-
-            $dire=$sen_via.' '.$sen_numvia.' '.$sen_letra.' '.$sen_com.' '.$sen_num.' '.$sen_letra2.' '.$sen_com2;
             
             $validacion = true; 
 
-            if (empty($sen_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_tipo_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
+            
 
             if ($validacion) {
                 $id = $obj->autoIncrement("senializacion_vial_malEstado");
-                $sql = "INSERT INTO senializacion_vial_malestado VALUES ($id, '$sen_comentario','$dire',$sen_tipo_senializacion, $sen_cat_senializacion,  $sen_t_sen,$sen_danio ,$id_usu, 3)";
+                $sql = "INSERT INTO senializacion_vial_malestado VALUES ($id, '$sen_comentario',$sen_tipo_senializacion, $sen_cat_senializacion,  $sen_t_sen,$sen_danio ,$id_usu, 3)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
@@ -547,17 +393,9 @@
             $acc_choque=$_POST['choque'];
             $acc_vehiculo=$_POST['vehiculo'];
             $acc_lesionados=$_POST['lesionados'];
-            $acc_tipo_via=$_POST['tipo_via'];
-            $acc_numvia=$_POST['numVia'];
-            $acc_letra= $_POST['letra'];
-            $acc_com= $_POST['complemento'];
-            $acc_num= $_POST['num'];
-            $acc_letra2= $_POST['letra2'];
-            $acc_com2= $_POST['complemento2'];
             $acc_comentario=$_POST['comentario'];
             
 
-            $dire= $acc_tipo_via.' '.$acc_numvia.' '.$acc_letra.' '.$acc_com.' '.$acc_num.' '.$acc_letra2.' '.$acc_com2;
             
             $validacion = true; 
             if (empty($acc_tipo_acc)) {
@@ -580,38 +418,11 @@
                 $_SESSION['errores'][] = "El campo lesionados es requerido";
                 $validacion = false;
             }
-            if (empty($acc_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
-                $validacion = false;
-            }
-            if (empty($acc_tipo_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
+
 
             if ($validacion) {
                 $id = $obj->autoIncrement("registro_accidente");
-                $sql = "INSERT INTO registro_accidente (id_registro_accidente,lesionados,observacion,direccion,id_estado,id_tipo_vehiculo,id_tipo_choque) VALUES ($id, '$acc_lesionados', '$acc_comentario','$dire',3, $acc_vehiculo, $acc_choque)";
+                $sql = "INSERT INTO registro_accidente (id_registro_accidente,lesionados,observacion,id_estado,id_tipo_vehiculo,id_tipo_choque) VALUES ($id, '$acc_lesionados', '$acc_comentario',3, $acc_vehiculo, $acc_choque)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
@@ -679,57 +490,21 @@
             $obj = new solicitudesModel();
 
             $sen_tipo_senializacion=$_POST['cat_senializacion'];
-            // $sen_fecha=$_POST['date'];
             $sen_cat_senializacion=$_POST['cat_sen'];
             $sen_t_sen=$_POST['t_sen'];
             $sen_via=$_POST['tipo_via'];
-            $sen_numvia=$_POST['numVia'];
-            $sen_letra= $_POST['letra'];
-            $sen_com= $_POST['complemento'];
-            $sen_num= $_POST['num'];
-            $sen_letra2= $_POST['letra2'];
-            $sen_com2= $_POST['complemento2'];
             $sen_comentario=$_POST['comentario'];
-            $sen_tipo_via=$_POST['tipo_via'];
             $id_usu = $_SESSION ['id_usu'];
 
 
-            $dire=$sen_tipo_via.' '.$sen_numvia.' '.$sen_letra.' '.$sen_com.' '.$sen_num.' '.$sen_letra2.' '.$sen_com2;
             
             $validacion = true; 
 
-            if (empty($sen_numvia)) {
-                $_SESSION['errores'][] = "El campo numero via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_letra)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_com)) {
-                $_SESSION['errores'][] = "El campo complemento via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_num)) {
-                $_SESSION['errores'][] = "El campo numero es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_letra2)) {
-                $_SESSION['errores'][] = "El campo letra via es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_com2)) {
-                $_SESSION['errores'][] = "El campo complemento es requerido";
-                $validacion = false;
-            }
-            if (empty($sen_tipo_via)) {
-                $_SESSION['errores'][] = "El campo tipo via es requerido";
-                $validacion = false;
-            }
+            
 
             if ($validacion) {
                 $id = $obj->autoIncrement("senializacion_vial_nueva");
-                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, direccion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado) VALUES ($id,'$sen_comentario','$dire', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu , 3)";
+                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado) VALUES ($id,'$sen_comentario', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu , 3)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {

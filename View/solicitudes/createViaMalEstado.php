@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
         <div class="col-md-6">
                 <label for="tipo_via" class="form-label">Tipo de vía</label>
                 <select class="form-select" name="tipo_via" id="tipo_via">
@@ -76,7 +76,7 @@
             <div class="col-md-3">
                 <input type="text" class="form-control" id="complemento2" placeholder="Complemento" name="complemento2">
             </div>
-        </div>
+        </div> -->
 
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentario</label>

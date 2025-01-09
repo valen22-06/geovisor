@@ -24,7 +24,6 @@
                     <th>Id</th>
                     <th>Fecha</th>
                     <th>Observacion</th>
-                    <th>Direccion</th>
                     <th>Categoria</th>
                     <th>Tipo de Reductor</th>
                     <th>Estado</th>
@@ -37,16 +36,15 @@
                 $clase="";
                 $texto="";
                 echo "<tr>";
-                echo "<td>".$sen['id_reductores_nuevo']."</td>";
-                echo "<td>".$sen['fecha']."</td>";
-                echo "<td>".$sen['descripcion']."</td>";
-                echo "<td>".$sen['direccion']."</td>";
-                echo "<td>".$sen['nombre_c']."</td>";
-                echo "<td>".$sen['nombre_t']."</td>";
+                echo "<td>".$redu['id_reductores_nuevo']."</td>";
+                echo "<td>".$redu['fecha']."</td>";
+                echo "<td>".$redu['descripcion']."</td>";
+                echo "<td>".$redu['nombre_c']."</td>";
+                echo "<td>".$redu['nombre_t']."</td>";
                 echo "<td>";
                 echo"<form action='getUrl('Senializacion', 'Senializacion', 'postUpdateStatus');' method='post' class='mt-4'>";
                 echo "<select class='form-select' name='id' id='id'>";
-                echo "<option disabled selected>".($sen['edescripcion'])."</option>";
+                echo "<option disabled selected>".($redu['edescripcion'])."</option>";
                 foreach ($estado as $est) {
                 echo "<option value='".($est['id_estado'])."'>".($est['nombre_estado'])."</option>";
                 }
