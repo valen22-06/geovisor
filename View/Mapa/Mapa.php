@@ -110,7 +110,7 @@ $urlImage = $mapImage -> saveWebImage();
             myMap1 = new msMap(document.getElementById('dc_main'), 
         'standardRight');
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
+        myMap1.setMapFile('C:/ms4w/Apache/htdocs/Geovisor/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap1.setLayers('Punto Comuna Mapa');
 
@@ -118,7 +118,7 @@ $urlImage = $mapImage -> saveWebImage();
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
+        myMap2.setMapFile('C:/ms4w/Apache/htdocs/Geovisor/geovisor/View/Mapa/Cali.map');
         myMap2.setLayers('Punto Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 

@@ -42,6 +42,13 @@
                 <label for="date" class="form-label">Fecha del accidente</label>
                 <input type="date" class="form-control" id="date" name="date">
             </div> -->
+            <div class="col-md-6">
+                <label for="lesionados" class="form-label">¿Lesionados?</label>
+                <select class="form-select" id="lesionados" name="lesionados">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
         </div>
 
         <div class="row mb-3">
@@ -70,14 +77,8 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="lesionados" class="form-label">¿Lesionados?</label>
-                <select class="form-select" id="lesionados" name="lesionados">
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <div class="col-md-6">
+            
+            <!-- <div class="col-md-6">
                 <label for="tipo_via" class="form-label">Tipo de vía</label>
                 <select class="form-select" name="tipo_via" id="tipo_via">
                     <option disabled selected>Seleccione un tipo de vía</option>
@@ -88,10 +89,10 @@
                   ?>
                     
                 </select>
-            </div>
+            </div> -->
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
             <div class="col-md-3">
                 <input type="text" class="form-control" id="numVia" placeholder="Número de la vía" name="numVia">
             </div>
@@ -113,7 +114,7 @@
             <div class="col-md-3">
                 <input type="text" class="form-control" id="complemento2" placeholder="Complemento" name="complemento2">
             </div>
-        </div>
+        </div> -->
 
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentario</label>

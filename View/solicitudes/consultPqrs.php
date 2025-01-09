@@ -35,15 +35,15 @@ include_once '../Lib/helpers.php';
                     $clase="";
                     $texto="";
                     echo "<tr>";
-                        echo "<td>".$p['id_pqrs']."</td>";
-                        echo "<td>".$p['nom_cat']."</td>";
-                        echo "<td>".$p['observacion_pqrs']."</td>";
+                        echo "<td>".$pqrs['id_pqrs']."</td>";
+                        echo "<td>".$pqrs['nom_cat']."</td>";
+                        echo "<td>".$pqrs['observacion_pqrs']."</td>";
                     
 
-                        if($p['estado_pqrs']==4){
+                        if($pqrs['estado_pqrs']==4){
                             $clase="btn btn-danger";
                             $texto="Pendiente";
-                        }else if($p['estado_pqrs']==3){
+                        }else if($pqrs['estado_pqrs']==3){
                             $clase="btn btn-success";
                             $texto="Revisada";
                         }
@@ -51,18 +51,18 @@ include_once '../Lib/helpers.php';
                         echo "<td>";
                             if(!empty($clase))echo "<button type='button' class='$clase' id='cambiar_estado' 
                             data-url='" .getUrl("pqrs", "pqrs", "postUpdateStatus", false, "ajax"). "' 
-                            data-id='" .$p['estado_pqrs'] ."' 
-                            data-user='" .$p['id_pqrs'] ."'>$texto</button>"
+                            data-id='" .$pqrs['estado_pqrs'] ."' 
+                            data-user='" .$pqrs['id_pqrs'] ."'>$texto</button>"
                             ."</td>";
                         
                             echo "<td>";
-                            echo "<a href='" . getUrl("pqrs", "pqrs", "getUpdate", array("id_usuario" => $p['id_pqrs'])) . "'>";
+                            echo "<a href='" . getUrl("pqrs", "pqrs", "getUpdate", array("id_usuario" => $pqrs['id_pqrs'])) . "'>";
                             echo "<button class='btn btn-primary'>Editar</button>";
                             echo "</a>";
                             echo "</td>";
 
                             echo "<td>";
-                            echo "<a href='" . getUrl("pqrs", "pqrs", "getDelete", array("id_usuario" => $p['id_pqrs'])) . "'>";
+                            echo "<a href='" . getUrl("pqrs", "pqrs", "getDelete", array("id_usuario" => $pqrs['id_pqrs'])) . "'>";
                             echo "<button class='btn btn-danger'>Eliminar</button>";
                             echo "</a>";
                             echo "</td>";

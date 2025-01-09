@@ -148,7 +148,7 @@
                         <span class="sub-item">Solicitudes</span>
                       </a>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a href="<?php echo getUrl("Senializacion","Senializacion","getSenializacion");?>">
                         <span class="sub-item">Nueva señalizacion</span>
                       </a>
@@ -177,7 +177,7 @@
                       <a href="<?php echo getUrl("pqrs","pqrs","getPQRS");?>">
                         <span class="sub-item">PQRS</span>
                       </a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </li>

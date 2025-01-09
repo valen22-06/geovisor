@@ -1,8 +1,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/global.js"></script>
+<script src="../assets/js/global.js"></script>
 
-<?php include_once '../Lib/helpers.php'; ?>
+<?php include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor/Lib/helpers.php'; ?>
 
 <div class="card shadow-lg mt-5" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
@@ -25,7 +25,6 @@
                     <th>Fecha</th>
                     <th>Lesionados</th>
                     <th>Observacion</th>
-                    <th>Direccion</th>
                     <th>Tipo de vehiculos</th>
                     <th>Tipo choque</th>
                     <th>Estado</th>
@@ -38,17 +37,16 @@
                 $clase="";
                 $texto="";
                 echo "<tr>";
-                echo "<td>".$acc['id_registro_accidente']."</td>";
-                echo "<td>".$acc['fecha_accidente']."</td>";
-                echo "<td>".$acc['lesionados']."</td>";
-                echo "<td>".$acc['observacion']."</td>";
-                echo "<td>".$acc['direccion']."</td>";
-                echo"<td>".$acc['tipo_vehiculo']."</td>";
-                echo"<td>".$acc['tipo_choque']."</td>";
+                echo "<td>".$accidente['id_registro_accidente']."</td>";
+                echo "<td>".$accidente['fecha']."</td>";
+                echo "<td>".$accidente['lesionados']."</td>";
+                echo "<td>".$accidente['observacion']."</td>";
+                echo "<td>".$accidente['tipo_vehiculo']."</td>";
+                echo "<td>".$accidente['tipo_choque']."</td>";
                 echo "<td>";
-                echo"<form action='getUrl('Accidente', 'Accidente', 'postUpdateStatus');' method='post' class='mt-4'>";
+                echo "<form action='getUrl('Accidente', 'Accidente', 'postUpdateStatus');' method='post' class='mt-4'>";
                 echo "<select class='form-select' name='id' id='id'>";
-                echo "<option disabled selected>".($acc['edescripcion'])."</option>";
+                echo "<option disabled selected>".($accidente['edescripcion'])."</option>";
                 foreach ($estado as $est) {
                 echo "<option value='".($est['id_estado'])."'>".($est['nombre_estado'])."</option>";
                 }

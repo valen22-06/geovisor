@@ -24,7 +24,6 @@
                     <th>Id</th>
                     <th>Fecha</th>
                     <th>Observacion</th>
-                    <th>Direccion</th>
                     <th>Daño</th>
                     <th>Estado</th>
 
@@ -36,11 +35,10 @@
                 $clase="";
                 $texto="";
                 echo "<tr>";
-                echo "<td>".$sen['id_via_mal_estado']."</td>";
-                echo "<td>".$sen['fecha']."</td>";
-                echo "<td>".$sen['descripcion']."</td>";
-                echo "<td>".$sen['direccion']."</td>";
-                echo "<td>".$sen['nombre_d']."</td>";
+                echo "<td>".$viaM['id_via_mal_estado']."</td>";
+                echo "<td>".$viaM['fecha']."</td>";
+                echo "<td>".$viaM['descripcion']."</td>";
+                echo "<td>".$viaM['nombre_d']."</td>";
                 echo "<td>";
                 echo"<form action='getUrl('Senializacion', 'Senializacion', 'postUpdateStatus');' method='post' class='mt-4'>";
                 echo "<select class='form-select' name='id' id='id'>";
