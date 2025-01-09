@@ -7,27 +7,13 @@ if(!extension_loaded("MapScript")){
 
 $mapObject = ms_newMapObj("../View/Mapa/Cali.map");
 
-// $map_pt = click2map($_POST['image_x'], $_POST['image_y']);
-
-// $pt = ms_newPointObj();
-// $pt -> setXY($map_pt[0], $map_pt[1]);
 
 
 $mapImage = $mapObject -> draw();
 
 $urlImage = $mapImage -> saveWebImage();
 
-// function click2map($click_x,$click_y)
-// {
-//     global $mapObject;
-//     $e = $mapObject->extent;
-//     $x_pct = ($click_x/$mapObject->width);
-//     $y_pct = 1- ($click_y/$mapObject->height);
-//     $x_map = $e->minx + (($e->maxx-$e->minx)*$x_pct);
-//     $y_map = $e->miny + (($e->maxy-$e->miny)*$y_pct);
 
-//     return array($x_map,$y_map);
-// }
 
 ?>
 
@@ -109,25 +95,12 @@ $urlImage = $mapImage -> saveWebImage();
 </div> 
 
 
-    <!-- <p> -->
-        <!-- <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
+    <!-- <p>
+        <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
 
-        <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?> -->
-    <!-- </p> -->
-    <!-- <?php
-            // $obj = new MasterModel();
+        <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?>
+    </p> -->
 
-            // $result = $obj -> autoIncrement('puntos')-1;
-            
-
-
-            // $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($map_pt[0] $map_pt[1])'),4326))";
-            // if ($obj->insert($sql)) {
-            //     echo "Se inserto correctamente";
-            // } else {
-            //     echo "Se ha producido un error al insertar";
-            // }
-        ?> -->
 
     </div>
     
@@ -202,6 +175,23 @@ $urlImage = $mapImage -> saveWebImage();
                 alert("Click sobre las coordenadas: x " +x+ "y: " +y+ "y reales : x" +xx+ "y: "+yy);
 
                 consultar1 = new objectAjax();
+
+                    // <?php
+                    //     $x = x;
+                    //     $y = y;
+
+                    //     $obj = new MasterModel();
+
+                    //     $result = $obj -> autoIncrement('puntos')-1;
+
+                    //     $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)',4326))";
+                    //     if ($obj->insert($sql)) {
+                    //         echo "Se inserto correctamente";
+                    //     } else {
+                    //         echo "Se ha producido un error al insertar";
+                    //     }
+                    // ?>
+                    
                 consultar1.open("GET", "Insertar_punto.php?x="+xx+"&y="+yy,true);
                 consultar1.onreadystatechange=function(){
                     if(consultar1.readyState==4){

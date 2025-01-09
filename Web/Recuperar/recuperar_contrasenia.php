@@ -44,8 +44,8 @@ include_once '../../Lib/helpers.php';
         ?>
 
         <div class="card shadow-lg" id="card_red_man">
-            <div class="card-header bg-secondary text-light text-center">
-                <h3 class="display-6 mb-2">Login</h3>
+            <div class="card-header bg-dark text-light text-center">
+                <h3 class="display-6 mb-2">Recuperar contraseña</h3>
             </div>
 
             <div class="card-body shadow-lg bg-light">
@@ -58,7 +58,7 @@ include_once '../../Lib/helpers.php';
                     </div>
                     
                     <div class="mt-5 text-center">
-                    <button type="submit" id="btn-recuperar" class="btn btn-secondary w-50">Recuperar</button>
+                    <button type="submit" id="btn-recuperar" class="btn btn-dark w-50">Recuperar</button>
                     </div>
                 </form>
 

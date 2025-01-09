@@ -27,7 +27,7 @@ include_once '../Lib/helpers.php';
 </head>
 
 
-<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+<body class="d-flex justify-content-center align-items-center vh-100 bg-dark">
     <div class="container" style="max-width: 400px;">
         <div class='alert alert-danger d-none' role='alert' id='error'></div>
 
@@ -61,7 +61,7 @@ include_once '../Lib/helpers.php';
                         <input type="password" class="form-control bg-light text-dark" name="pass" id="clave" placeholder="Contraseña" required />
                     </div>
                     <div class="mt-5 text-center">
-                    <button type="submit" id="btn-iniciar" class="btn btn-secondary w-50">Iniciar</button>
+                    <button type="submit" id="btn-iniciar" class="btn btn-dark w-50">Iniciar</button>
                     </div>
                 </form>
 

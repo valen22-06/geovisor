@@ -1,126 +1,7 @@
 <?php
-
 include_once '../lib/conf/connection.php';
-//como lo trabajamos en modelo fachada, incluir todas las librerias, html 
 include_once '../Lib/helpers.php';
-
 ?>
-
-<style>
-  body {
-    background-image: url("https://propacifico.org/wp-content/uploads/2024/02/adobestock-284418692-scaled.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  input[type="date"]::placeholder {
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  input[type="text"]::placeholder {
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  .contM {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cont1 {
-    margin-left: 20px;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-  }
-
-  .cont2 {
-    margin-right: 20px;
-    padding-left: 5px;
-    width: 50%;
-    margin-bottom: 166px;
-  }
-
-  .form-control {
-    border-collapse: collapse;
-    border-bottom: 1px solid black;
-    border-radius: 0px;
-    background: rgba(255, 255, 255, 0.5);
-    font-family: 'Oswald', sans-serif;
-    color: black;
-  }
-
-  .form-control::placeholder {
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  .enviar {
-    border-radius: 20px;
-  }
-
-  .row {
-    width: 55%;
-    margin-top: 15px;
-    padding: 30px 0px;
-    border-radius: 40px;
-    background: rgba(255, 255, 255, 0.4);
-  }
-
-  form h2 {
-    color: #3b4d54;
-    font-size: 40px;
-    font: small-caps 350% serif;
-    margin: 20px;
-  }
-
-  button {
-    width: 120px;
-    height: 35px;
-    font-size: 15px;
-    background: rgba(255, 255, 255, 0.8);
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-
-  div.botonRegre button {
-    width: 120px;
-    height: 35px;
-    font-size: 15px;
-    background: rgba(255, 255, 255, 0.8);
-    margin-top: 15px;
-    margin-bottom: 15px;
-    color: black;
-  }
-
-  @media(max-width:600px) {
-    body {
-      font-size: 10px;
-    }
-
-    h2 {
-      font-size: 15px;
-    }
-
-    input[type=text], input[type=password], input[type=email] {
-      font-size: 13px;
-      border-radius: 30px;
-    }
-
-    button {
-      width: 80px;
-      height: 30px;
-      float: right;
-      font-size: 10px;
-      margin-bottom: 10px;
-    }
-  }
-</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,96 +9,113 @@ include_once '../Lib/helpers.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Registrar Usuario</title>
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="assets/js/jquery.js"></script>
-  <script src="assets/js/global.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- SweetAlert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
-<body>
-  <center>
-    <div class='alert alert-danger d-none' role='alert' id='error'></div>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
-    <div class="container">
-      <?php
-      if (isset($_SESSION['errores'])) {
-        echo "<div class='alert alert-danger' role='alert'>";
-        foreach ($_SESSION['errores'] as $error) {
-          echo $error . "<br>";
-        }
-        echo "</div>";
-        unset($_SESSION['errores']);
-      }
-      ?>
+  <div class="container">
+    <div class="card shadow-lg" style="max-width: 700px; margin: auto;">
+      <div class="card-header bg-dark text-white text-center">
+        <h3>Registrar Usuario</h3>
+      </div>
 
-      <div class="row">
-        <form action="<?php echo getUrl('Usuarios', 'Usuarios', 'postCreate', false, 'ajax'); ?>" method="post" class="col-xs-12 col-sm-12 col-md-12">
-          <h2>Registrar</h2>
+      <div class="card-body">
+        <?php if (isset($_SESSION['errores'])): ?>
+          <div class="alert alert-danger">
+            <?php
+            foreach ($_SESSION['errores'] as $error) {
+              echo htmlspecialchars($error) . "<br>";
+            }
+            unset($_SESSION['errores']);
+            ?>
+          </div>
+        <?php endif; ?>
 
-          <div class="contM">
-            <div class="cont1">
-              <div class="form-group">
-                <select class="form-control" name="tipo_documento" id="tipo_docu">
-                  <option selected disabled>Seleccione un tipo de documento</option>
+        <form action="<?php echo getUrl('Usuarios', 'Usuarios', 'postCreate', false, 'ajax'); ?>" method="post">
+          <div class="row">
+            <!-- Column 1 -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="tipo_docu" class="form-label">Tipo de Documento</label>
+                <select class="form-select" name="tipo_documento" id="tipo_docu" >
+                  <option value="" selected disabled>Seleccione un tipo de documento</option>
                   <?php
                   foreach ($tipo_documento as $tipo) {
-                    echo "<option value='" . $tipo['id_tipo_documento'] . "'>" . $tipo['nombre_tipo_documento'] . "</option>";
+                    echo "<option value='" . htmlspecialchars($tipo['id_tipo_documento']) . "'>" . htmlspecialchars($tipo['nombre_tipo_documento']) . "</option>";
                   }
                   ?>
                 </select>
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="name" placeholder="Primer nombre *" name="name">
+              <div class="mb-3">
+                <label for="name" class="form-label">Primer Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Primer nombre" required>
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="apellido" placeholder="Primer apellido *" name="apellido">
+              <div class="mb-3">
+                <label for="apellido" class="form-label">Primer Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Primer apellido" required>
               </div>
 
-              <div class="form-group">
-                <input type="date" class="form-control" id="date" placeholder="Fecha de nacimiento *" name="date">
+              <div class="mb-3">
+                <label for="date" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="date" name="date" required>
               </div>
 
-              <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email *" name="email">
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
               </div>
             </div>
 
-            <div class="cont2">
-              <div class="form-group">
-                <input type="number" class="form-control" id="documento" placeholder="Documento de identidad *" name="documento">
+            <!-- Column 2 -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="documento" class="form-label">Documento de Identidad</label>
+                <input type="number" class="form-control" id="documento" name="documento" placeholder="Documento de identidad" required>
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="surname" placeholder="Segundo nombre" name="secondName">
+              <div class="mb-3">
+                <label for="surname" class="form-label">Segundo Nombre</label>
+                <input type="text" class="form-control" id="surname" name="secondName" placeholder="Segundo nombre">
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo apellido *" name="segundoApellido">
+              <div class="mb-3">
+                <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+                <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" placeholder="Segundo apellido">
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="telefono" placeholder="Telefono *" name="telefono">
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
               </div>
 
-              <div class="form-group">
-                <input type="password" class="form-control" id="Rtpwd" placeholder="Contraseña *" name="Rptpwd">
+              <div class="mb-3">
+                <label for="Rtpwd" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="Rtpwd" name="Rptpwd" placeholder="Contraseña" required>
               </div>
-
-              <button type="submit" id="btn-env">Enviar <i class="glyphicon glyphicon-send"></i></button>
             </div>
           </div>
-        </form>
 
-        <button type="submit" id="btn-reg">Volver</button>
+          <div class="text-center">
+            <button type="submit" class="btn btn-dark">Registrar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back();">Volver</button>
+          </div>
+        </form>
       </div>
     </div>
-  </center>
+  </div>
+
 </body>
 
 </html>
