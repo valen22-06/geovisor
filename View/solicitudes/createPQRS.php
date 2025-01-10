@@ -33,7 +33,7 @@ include_once '../Lib/helpers.php';
         }
     ?>
         
-<form action="<?php echo getUrl("pqrs","pqrs","postCreate"); ?> " method="post">
+<form action="<?php echo getUrl("solicitudes","solicitudes","postCreatePQRS"); ?> " method="post">
     <div class="row mt-5">
 
         <div class ="col-md-4">
@@ -62,8 +62,11 @@ include_once '../Lib/helpers.php';
         <div class="mt-5">
             <input type="submit" value="Enviar" class="btn btn-success">
         </div>
+
         
     </div>
+
+
         
          
 </form>

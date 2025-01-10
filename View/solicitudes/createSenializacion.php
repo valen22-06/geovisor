@@ -4,7 +4,7 @@
 
 <div class="card shadow-lg" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
-        <h3 class="display-6 mb-0">señalizacion nueva</h3>
+        <h3 class="display-6 mb-0">Señalizacion nueva</h3>
     </div>
 
     <div class="card-body">
@@ -34,13 +34,6 @@
                   ?>
                 </select>
             </div>
-            <!-- <div class="col-md-6">
-                <label for="date" class="form-label">Fecha del accidente</label>
-                <input type="date" class="form-control" id="date" name="date">
-            </div> -->
-        </div>
-
-        <div class="row mb-3">
             <div class="col-md-6">
                 <label for="cat_sen" class="form-label">Categoria Señalizacion</label>
                 <select class="form-select" name="cat_sen" id="cat_sen">
@@ -65,48 +58,18 @@
             </div>
         </div>
 
-        <!-- <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="tipo_via" class="form-label">Tipo de vía</label>
-                <select class="form-select" name="tipo_via" id="tipo_via">
-                    <option disabled selected>Seleccione un tipo de vía</option>
-                    <?php
-                      foreach ($tipo_via as $tipo) {
-                          echo "<option value='" .$tipo['nombre_via']. "'>" .$tipo['nombre_via']."</option>";
-                      }
-                  ?>
-                    
-                </select>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="numVia" placeholder="Número de la vía" name="numVia">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="letra" placeholder="Letra" name="letra">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="complemento" placeholder="Complemento" name="complemento">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="num" placeholder="Número" name="num">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="letra2" placeholder="Letra" name="letra2">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="complemento2" placeholder="Complemento" name="complemento2">
-            </div>
-        </div> -->
 
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentario</label>
             <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Escribe un comentario"></textarea>
+        </div>
+
+
+        <div class ="row mt-3">
+            <div class ="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Imagen</label>
+                <input type="file" class="form-control" name="imagen">
+            </div>
         </div>
 
         <div class="text-center">

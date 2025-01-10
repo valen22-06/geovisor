@@ -212,5 +212,36 @@ $(document).ready(function(){
                 alert('no trae nada'); 
             }
             });
+
+            $(document).on("click", "#copyList", function(){
+
+                $cont=0;
+                
+                let listUser = $("#listUser").html();
+        
+                
+        
+                if ($contResp==0) {
+                    alert('hola')
+        
+                }
+        
+                    $("#imagenes").append(
+                        "<div class='col-md-4 form-group'>"+
+                        "<label>Imagenes</label>"+
+                            "<div class='row'>"+
+                                "<div class='col-md-10'>"+listUser+"</div>"+
+                                "<div class='col-md-2'>"+
+                                    "<button class='btn btn-danger' type='button' id='removeList'>x</button>"+
+                                "</div>"+
+                            "</div>"+
+                        "</div>"
+                    )   
+        
+            });
+        
+            $(document).on("click","#removeList",function(){
+                $(this).parent().parent().parent().remove();
+            });
     
     });

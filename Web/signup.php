@@ -100,17 +100,104 @@ include_once '../Lib/helpers.php';
                 <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
               </div>
 
+
               <div class="mb-3">
                 <label for="Rtpwd" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="Rtpwd" name="Rptpwd" placeholder="Contraseña" required>
               </div>
+
+              
+              
+              <!-- <div class="row mb-3-">
+              <label for="direccion" class="form-label">direccion</label>
+
+           
+              
+                    <select class="form-select" name="tipo_documento" id="tipo_docu" >
+                      <option value="" selected disabled>Seleccione un tipo de vía</option>
+                        <?php
+                        foreach ($tipo_via as $tipo) {
+                          echo "<option value='" . htmlspecialchars($tipo['nombre_via']) . "'>" . htmlspecialchars($tipo['nombre_via']) . "</option>";
+                        }
+                        ?>
+                    </select> -->
+
+
+                <!-- <input type="text" class="form-control" id="" name="num1" placeholder="Número" required>
+
+         
+                    <input type="text" class="form-control" id="" name="letra1" placeholder="Complemento" required>
+                    <label for="" class="">#</label>
+                    <input type="text" class="form-control" id="" name="num2" placeholder="Número" required>
+                    <input type="text" class="form-control" id="" name="letra2" placeholder="Complemento" required>
+                    <label for="" class="">-</label>
+                    <input type="text" class="form-control" id="" name="num3" placeholder="Número" required>
+                    <input type="text" class="form-control" id="" name="letra3" placeholder="Complemento" required>
+
+              </div> -->
+              
             </div>
+
+            <div class="container">
+              <label for="direccion" class="form-label">Dirección</label>
+              
+              <div class="row">
+                <div class="col-5">
+                <select class="form-select" name="tipo_via" id="tipo_via" >
+                      <option value="" selected disabled>Seleccione un tipo de vía</option>
+                        <?php
+                        foreach ($tipo_via as $tipo) {
+                          echo "<option value='" . htmlspecialchars($tipo['nombre_via']) . "'>" . htmlspecialchars($tipo['nombre_via']) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-3">
+                <input type="text" class="form-control" id="" name="num1" placeholder="Número" required>
+                </div>
+
+                <div class="col-3">
+                <input type="text" class="form-control" id="" name="letra1" placeholder="Complemento" required>
+                </div>
+                
+                </div>
+
+                <div style="display: flex; margin-top: 10px;"  class="container">
+                
+                <label for="" class="">#</label>
+
+                  <div class="col ms-2">
+                  <input type="text" class="form-control" id="" name="num2" placeholder="Número" required>
+                  </div>
+
+                  <div class="col ms-2">
+                    <input type="text" class="form-control" id="" name="letra2" placeholder="Complemento" required>
+                  </div>
+                    
+                  <label for="" class="ms-2">-</label>
+
+                  <div class="col ms-2">
+                  <input type="text" class="form-control" id="" name="num3" placeholder="Número" required>
+                  </div>
+
+                  <div class="col ms-2">
+                  <input type="text" class="form-control" id="" name="letra3" placeholder="Complemento" required>
+                  </div>
+                </div>
+
+                
+            </div>
+
           </div>
 
-          <div class="text-center">
+          
+
+          <div class="text-center" style="margin-top:30px">
             <button type="submit" class="btn btn-dark">Registrar</button>
             <button type="button" class="btn btn-secondary" onclick="window.history.back();">Volver</button>
           </div>
+
+
         </form>
       </div>
     </div>

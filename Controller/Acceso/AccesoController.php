@@ -1,6 +1,6 @@
 <?php 
 
-include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor/Model/Acceso/AccesoModel.php'; 
+include_once 'C:/ms4w/Apache/htdocs/geovisor/Model/Acceso/AccesoModel.php'; 
 
 class AccesoController {
  

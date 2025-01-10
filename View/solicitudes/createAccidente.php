@@ -121,9 +121,19 @@
             <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Escribe un comentario"></textarea>
         </div>
 
+
+        <div class ="row mt-3">
+            <div class ="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Imagen de tarea</label>
+                <input type="file" class="form-control" name="imagen">
+            </div>
+        </div>
+
         <div class="text-center">
             <button type="submit" class="btn btn-secondary">Registrar</button>
         </div>
+
+        
     </form>
                     </div>
 </div>

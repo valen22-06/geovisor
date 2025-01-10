@@ -2,9 +2,9 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="C:/ms4w/Apache/htdocs/Geovisor/geovisor/assets/js/global.js"></script>
+<script src="C:/ms4w/Apache/htdocs/geovisor/assets/js/global.js"></script>
 
-<?php include_once 'C:/ms4w/Apache/htdocs/Geovisor/geovisor/Lib/helpers.php'; ?>
+<?php include_once 'C:/ms4w/Apache/htdocs/geovisor/Lib/helpers.php'; ?>
 
 <div class="card shadow-lg mt-5" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
@@ -43,22 +43,22 @@
                     $clase="";
                     $texto="";
                     echo "<tr>";
-                        echo "<td>".$usuarios['id_usuario']."</td>";
-                        echo "<td>".$usuarios['tipo_documento']."</td>";
-                        echo "<td>".$usuarios['numero_documento']."</td>";
-                        echo "<td>".$usuarios['primer_nombre'].' '.$usuarios['segundo_nombre']."</td>";
+                        echo "<td>".$usu['id_usuario']."</td>";
+                        echo "<td>".$usu['tipo_documento']."</td>";
+                        echo "<td>".$usu['numero_documento']."</td>";
+                        echo "<td>".$usu['primer_nombre'].' '.$usuarios['segundo_nombre']."</td>";
                         // echo "<td>".$usu['segundo_nombre']."</td>";
-                        echo "<td>".$usuarios['primer_apellido'].' '.$usuarios['segundo_apellido']."</td>";
+                        echo "<td>".$usu['primer_apellido'].' '.$usuarios['segundo_apellido']."</td>";
                         // echo "<td>".$usu['segundo_apellido']."</td>";
-                        echo "<td>".$usuarios['telefono']."</td>";
-                        echo "<td>".$usuarios['correo']."</td>";
+                        echo "<td>".$usu['telefono']."</td>";
+                        echo "<td>".$usu['correo']."</td>";
 
-                        echo "<td>".$usuarios['fecha_nacimiento']."</td>";
+                        echo "<td>".$usu['fecha_nacimiento']."</td>";
 
-                        if($usuarios['id_estado']==1){
+                        if($usu['id_estado']==1){
                             $clase="btn btn-danger";
                             $texto="Inhabilitar";
-                        }else if($usuarios['id_estado']==2){
+                        }else if($usu['id_estado']==2){
                             $clase="btn btn-success";
                             $texto="Habilitar";
                         }
@@ -66,12 +66,12 @@
                         echo "<td>";
                             if(!empty($clase))echo "<button type='button' class='$clase' id='cambiar_estado' 
                             data-url='" .getUrl("Usuarios", "Usuarios", "postUpdateStatus", false, "ajax"). "' 
-                            data-id='" .$usuarios['id_estado'] ."' 
-                            data-user='" .$usuarios['id_usuario'] ."'>$texto</button>"
+                            data-id='" .$usu['id_estado'] ."' 
+                            data-user='" .$usu['id_usuario'] ."'>$texto</button>"
                             ."</td>";
                         
                             echo "<td>";
-                            echo "<a href='" . getUrl("Usuarios", "Usuarios", "getUpdate", array("id_usuario" => $usuarios['id_usuario'])) . "'>";
+                            echo "<a href='" . getUrl("Usuarios", "Usuarios", "getUpdate", array("id_usuario" => $usu['id_usuario'])) . "'>";
                             echo "<button class='btn btn-primary'>Editar</button>";
                             echo "</a>";
                             echo "</td>";

@@ -79,9 +79,14 @@ $urlImage = $mapImage -> saveWebImage();
             <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[1]"
                 value="Comuna">
             <strong>Comuna</strong>
-    
+
         <p align="left">
             <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[2]"
+                value="Calles">
+            <strong>Calles</strong>
+    
+        <p align="left">
+            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[3]"
                 value="Puntos">
             <strong>Puntos</strong>
             
@@ -110,15 +115,15 @@ $urlImage = $mapImage -> saveWebImage();
             myMap1 = new msMap(document.getElementById('dc_main'), 
         'standardRight');
         myMap1.setCgi('/cgi-bin/mapserv.exe');
-        myMap1.setMapFile('C:/ms4w/Apache/htdocs/Geovisor/geovisor/View/Mapa/Cali.map');
+        myMap1.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap1.setLayers('Punto Comuna Mapa');
+        myMap1.setLayers('Punto Calles Comuna Mapa');
 
         myMap2 = new msMap(document.getElementById('dc_main2'), 
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap2.setMapFile('C:/ms4w/Apache/htdocs/Geovisor/geovisor/View/Mapa/Cali.map');
+        myMap2.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap2.setLayers('Punto Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 

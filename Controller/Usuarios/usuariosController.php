@@ -19,6 +19,8 @@ class UsuariosController{
         $model = new usuariosModel();
         $sql = "SELECT * FROM tipo_documento";
         $tipo_documento =$model->consult($sql);
+        $sql = "SELECT * FROM tipo_via";
+        $tipo_via =$model->consult($sql);
         if(!empty($tipo_documento)){    
             // include_once 'signup.php';
             // foreach($tipo_documento as $tipo){
@@ -43,6 +45,15 @@ class UsuariosController{
         $usu_clave = $_POST['Rptpwd'];
         $usu_telefono = $_POST['telefono'];
         $f_nacimiento = $_POST['date'];
+        $via = $_POST['tipo_via'];
+        $num1 = $_POST['num1'];
+        $let1 = $_POST['letra1'];
+        $num2 = $_POST['num2'];
+        $let2 = $_POST['letra2'];
+        $num3 = $_POST['num3'];
+        $letra3 = $_POST['letra3'];
+        $usu_direccion = "$via $num1 $let1 $num2 $let2 $num3 $letra3";
+
 
         $validacion = true;  
     
@@ -111,7 +122,7 @@ class UsuariosController{
     
         if ($validacion) {
             $id = $obj->autoIncrement("usuarios");
-            $sql = "INSERT INTO usuarios VALUES ($id, $usu_documento, '$usu_nombre1', '$usu_nombre2', '$usu_apellido1', '$usu_apellido2', $usu_telefono, '$usu_correo', '$f_nacimiento', '$hash', 1, 3, $usu_tipo)";
+            $sql = "INSERT INTO usuarios (id_usuario, numero_documento, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, telefono, correo, direccion_residencia, fecha_nacimiento, contrasenia, id_estado, id_rol, id_tipo_documento) VALUES ($id, $usu_documento, '$usu_nombre1', '$usu_nombre2', '$usu_apellido1', '$usu_apellido2', $usu_telefono, '$usu_correo', '$usu_direccion', '$f_nacimiento', '$hash', 1, 3, $usu_tipo)";
     
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {

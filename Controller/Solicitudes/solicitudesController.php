@@ -59,10 +59,11 @@
 
         public function getPQRS(){
             $obj = new solicitudesModel();
-            $sql = "SELECT p.*,c.nombre_categoria_pqrs as nom_cat, e.nombre_estado as nom_est FROM pqrs p, estado e, categoria_pqrs c WHERE p.estado_pqrs=e.id_estado AND c.id_categoria_pqrs=p.id_categoria_pqrs order by id_pqrs ASC";
+            $sql = "SELECT c.nombre_categoria_pqrs as nom_cat, e.nombre_estado as nom_est, p.observacion_pqrs as observacion, p.id_pqrs as id, p.id_categoria_pqrs as id_categoria_pqrs, p.estado_pqrs as estado_pqrs FROM pqrs p, estado e, categoria_pqrs c WHERE p.estado_pqrs=e.id_estado AND c.id_categoria_pqrs=p.id_categoria_pqrs order by id_pqrs ASC";
             $pqrs = $obj->consult($sql);
         
             include_once '../View/solicitudes/consultPqrs.php';
+
         }
         
         public function getCreatePQRS(){
@@ -85,14 +86,17 @@
             $id = $obj->autoIncrement("pqrs", "id_pqrs");
             $id_cat = $_POST['cat_pqrs'];
             $comentario = $_POST['comentario'];
-            $validacion = true;
+            if (!empty($id_cat) && !empty($comentario)){
+                $validacion = true;
+            } else {
+                $validacion = false;
+            }
     
             if ($validacion) {
     
-                $sql = "INSERT INTO pqrs VALUES ($id, $id_cat, '$comentario', 3)";
-        
+                $sql = "INSERT INTO pqrs VALUES ($id,'$comentario', 3, $id_cat)";              
                 if ($obj->insert($sql)) {
-                    redirect("index.php");
+                    redirect('index.php');
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
@@ -155,7 +159,13 @@
             $id_usu = $_SESSION ['id_usu'];
 
 
-           $validacion = true; 
+           $validacion = true;
+           
+           $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
+            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
             if (empty($via_danio)) {
                 $_SESSION['errores'][] = "El campo daño es requerido";
@@ -168,7 +178,16 @@
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
     
-                    redirect("index.php");
+                    $id = $obj->autoIncrement("reductores_malEstado");
+                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado) VALUES ($id,'$redu_comentario', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3 )";
+        
+                $ejecutar = $obj->insert($sql);
+                    if ($ejecutar) {
+        
+                        redirect("index.php");
+                    } else {
+                        echo "Se ha producido un error al insertar";
+                    }
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
@@ -223,6 +242,12 @@
             //     $_SESSION['errores'][] = "El campo fecha es requerido";
             //     $validacion = false;
             // }
+
+            $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
+            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
             
 
             if ($validacion) {
@@ -285,14 +310,23 @@
             }
             
 
+            $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
             if ($validacion) {
                 $id = $obj->autoIncrement("reductores_nuevo");
-                $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado) VALUES ($id,'$redu_comentario',$redu_cat_redu,$redu_tipo,$id_usu,3 )";
+                $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado, id_punto) VALUES ($id,'$redu_comentario',$redu_cat_redu,$redu_tipo,$id_usu,3,1)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
-    
-                    redirect("index.php");
+                    $id_img = $obj->autoIncrement("imagen_reductornuevo_detalle","id_imagen_reductornuevo");
+                    $sql = "INSERT INTO imagen_reductornuevo_detalle VALUES ($id_img, '$ruta', $id)";
+                    if ($obj->insert($sql)) {
+                        redirect("index.php");
+                    } else {
+                        echo "Intenta nuevamente";
+                    }
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
@@ -342,16 +376,25 @@
             
             $validacion = true; 
 
-            
+            $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
+            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
             if ($validacion) {
                 $id = $obj->autoIncrement("senializacion_vial_malEstado");
                 $sql = "INSERT INTO senializacion_vial_malestado VALUES ($id, '$sen_comentario',$sen_tipo_senializacion, $sen_cat_senializacion,  $sen_t_sen,$sen_danio ,$id_usu, 3)";
         
                 $ejecutar = $obj->insert($sql);
-                if ($ejecutar) {
-    
-                    redirect("index.php");
+                if ($ejecutar) {  
+                    $id_img = $obj->autoIncrement("imagen_seniamalestado_detalle","id_imagen_malestado");
+                    $sql = "INSERT INTO imagen_seniamalestado_detalle VALUES ($id_img, '$ruta', $id)";
+                    if ($obj->insert($sql)) {
+                        redirect("index.php");
+                    } else {
+                        echo "Intenta nuevamente";
+                    }
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
@@ -389,7 +432,6 @@
             $obj = new solicitudesModel();
 
             $acc_tipo_acc=$_POST['cat_accidente'];
-            // $acc_fecha=$_POST['date'];
             $acc_choque=$_POST['choque'];
             $acc_vehiculo=$_POST['vehiculo'];
             $acc_lesionados=$_POST['lesionados'];
@@ -419,15 +461,27 @@
                 $validacion = false;
             }
 
+            $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
+            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
             if ($validacion) {
-                $id = $obj->autoIncrement("registro_accidente");
-                $sql = "INSERT INTO registro_accidente (id_registro_accidente,lesionados,observacion,id_estado,id_tipo_vehiculo,id_tipo_choque) VALUES ($id, '$acc_lesionados', '$acc_comentario',3, $acc_vehiculo, $acc_choque)";
+                $id = $obj->autoIncrement("registro_accidente","id_registro_accidente");
+                $sql = "INSERT INTO registro_accidente (id_registro_accidente,lesionados,observacion,id_estado,id_tipo_vehiculo,id_tipo_choque, id_punto) VALUES ($id, '$acc_lesionados', '$acc_comentario',3, $acc_vehiculo, $acc_choque,1)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
+                    $id_img = $obj->autoIncrement("imagen_accidente_detalle","id_imagen_accidente");
+                    $sql = "INSERT INTO imagen_accidente_detalle VALUES ($id_img, '$ruta', $id)";
+                    if ($obj->insert($sql)) {
+                        redirect("index.php");
+                    } else {
+                        echo "Intenta nuevamente";
+                    }
     
-                    redirect("index.php");
+                    
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
@@ -500,16 +554,27 @@
             
             $validacion = true; 
 
+            $img = $_FILES['imagen']['name'];
+
+            $ruta = "img/$img";
+
+            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
+
             
 
             if ($validacion) {
                 $id = $obj->autoIncrement("senializacion_vial_nueva");
-                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado) VALUES ($id,'$sen_comentario', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu , 3)";
+                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado), id_punto VALUES ($id,'$sen_comentario', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu , 3, 1)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
-    
-                    redirect("index.php");
+                    $id_img = $obj->autoIncrement("imagen_senianueva_detalle","id_imagen_senianueva");
+                    $sql = "INSERT INTO imagen_accidente_detalle VALUES ($id_img, '$ruta', $id)";
+                    if ($obj->insert($sql)) {
+                        redirect("index.php");
+                    } else {
+                        echo "Intenta nuevamente";
+                    }
                 } else {
                     echo "Se ha producido un error al insertar";
                 }
