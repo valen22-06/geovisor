@@ -106,36 +106,6 @@ include_once '../Lib/helpers.php';
                 <input type="password" class="form-control" id="Rtpwd" name="Rptpwd" placeholder="Contraseña" required>
               </div>
 
-              
-              
-              <!-- <div class="row mb-3-">
-              <label for="direccion" class="form-label">direccion</label>
-
-           
-              
-                    <select class="form-select" name="tipo_documento" id="tipo_docu" >
-                      <option value="" selected disabled>Seleccione un tipo de vía</option>
-                        <?php
-                        foreach ($tipo_via as $tipo) {
-                          echo "<option value='" . htmlspecialchars($tipo['nombre_via']) . "'>" . htmlspecialchars($tipo['nombre_via']) . "</option>";
-                        }
-                        ?>
-                    </select> -->
-
-
-                <!-- <input type="text" class="form-control" id="" name="num1" placeholder="Número" required>
-
-         
-                    <input type="text" class="form-control" id="" name="letra1" placeholder="Complemento" required>
-                    <label for="" class="">#</label>
-                    <input type="text" class="form-control" id="" name="num2" placeholder="Número" required>
-                    <input type="text" class="form-control" id="" name="letra2" placeholder="Complemento" required>
-                    <label for="" class="">-</label>
-                    <input type="text" class="form-control" id="" name="num3" placeholder="Número" required>
-                    <input type="text" class="form-control" id="" name="letra3" placeholder="Complemento" required>
-
-              </div> -->
-              
             </div>
 
             <div class="container">
@@ -157,7 +127,7 @@ include_once '../Lib/helpers.php';
                 </div>
 
                 <div class="col-3">
-                <input type="text" class="form-control" id="" name="letra1" placeholder="Complemento" required>
+                <input type="text" class="form-control" id="" name="letra1" placeholder="Complemento">
                 </div>
                 
                 </div>
@@ -171,7 +141,7 @@ include_once '../Lib/helpers.php';
                   </div>
 
                   <div class="col ms-2">
-                    <input type="text" class="form-control" id="" name="letra2" placeholder="Complemento" required>
+                    <input type="text" class="form-control" id="" name="letra2" placeholder="Complemento">
                   </div>
                     
                   <label for="" class="ms-2">-</label>
@@ -181,7 +151,7 @@ include_once '../Lib/helpers.php';
                   </div>
 
                   <div class="col ms-2">
-                  <input type="text" class="form-control" id="" name="letra3" placeholder="Complemento" required>
+                  <input type="text" class="form-control" id="" name="letra3" placeholder="Complemento">
                   </div>
                 </div>
 
@@ -192,13 +162,16 @@ include_once '../Lib/helpers.php';
 
           
 
-          <div class="text-center" style="margin-top:30px">
-            <button type="submit" class="btn btn-dark">Registrar</button>
-            <button type="button" class="btn btn-secondary" onclick="window.history.back();">Volver</button>
-          </div>
-
+              <div class="text-center" style="margin-top:30px">
+                <button type="submit" class="btn btn-dark w-50">Registrar</button>
+              </div>
 
         </form>
+              <div class="mt-3 mb-4 text-center">
+                    <a href="login.php">
+                        <button type="button" id="volver" class="btn btn-secondary w-50">Volver</button>
+                    </a>
+              </div>
       </div>
     </div>
   </div>

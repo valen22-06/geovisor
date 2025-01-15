@@ -4,14 +4,13 @@
 
 <?php
 include_once '../Lib/helpers.php'; 
-
 ?>
 
 
-
+<br><br><br>
 <div class="card shadow-lg" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
-        <h3 class="display-6 mb-0">PQRS</h3>
+        <h3 class="display-6"> <b>PQRS</b></h3>
     </div>
 
     <div class="card-body">
@@ -33,33 +32,33 @@ include_once '../Lib/helpers.php';
         }
     ?>
         
-<form action="<?php echo getUrl("solicitudes","solicitudes","postCreatePQRS"); ?> " method="post">
-    <div class="row mt-5">
+<form action="<?php echo getUrl("pqrs","pqrs","postCreatePQRS"); ?> " method="post">
+    <div class="row ms-4">
 
-        <div class ="col-md-4">
-            <label for="cat_pqrs">Seleccionar categoria PQRS:</label>
-    
-            
-                    <select class="form-control" aria-label="Small select example" name="cat_pqrs" id="cat_pqrs">
-                    <option disablet>Seleccione...</option>
-                    <?php
-                    
-                        foreach ($cat_pqrs as $cat) {
-                            echo "<option value='".$cat['id_categoria_pqrs']."'>".$cat['nombre_categoria_pqrs']. "</option>";
-                        }
-                    
-                    ?>
-                    </select>
+                    <div class ="col-md-5">
+                        <label for="cat_pqrs">Seleccionar categoria PQRS:</label>
+
+                            <select class="form-control" aria-label="Small select example" name="cat_pqrs" id="cat_pqrs">
+                            <option disablet>Seleccione...</option>
+                            <?php
+                            
+                                foreach ($cat_pqrs as $cat) {
+                                    echo "<option value='".$cat['id_categoria_pqrs']."'>".$cat['nombre_categoria_pqrs']. "</option>";
+                                }
+                            
+                            ?>
+                            </select>
+                    </div>
 
 
-                    <div class ="col-md-4">
+                    <div class ="col-md-6">
                         <label for="comentario">Cometario</label>
                         <input type="textarea" name="comentario" id="coment" class="form-control" placeholder="Comentario">
                     </div>
          
-        </div>
+        
 
-        <div class="mt-5">
+        <div class="mt-5 mb-3">
             <input type="submit" value="Enviar" class="btn btn-success">
         </div>
 

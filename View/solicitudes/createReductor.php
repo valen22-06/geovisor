@@ -1,6 +1,5 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<?php include_once '../Lib/helpers.php'; ?>
 
 
 <div class="card shadow-lg" id="card_red_man">
@@ -21,7 +20,7 @@
             unset($_SESSION['errores']);
         }
     ?>
-    <form action="<?php echo getUrl("Reductor", "Reductor", "postCreate");?>" method="post" class="mt-4">
+    <form action="<?php echo getUrl("Solicitudes", "Solicitudes", "postCreate");?>" method="post" class="mt-4">
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="cat_reductor" class="form-label">categoria de reductor</label>
@@ -111,15 +110,22 @@
             <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Escribe un comentario"></textarea>
         </div>
 
-        <div id="responsables" class="mt-5">
-        
-        </div>
 
-        <div class ="row mt-3">
-            <div class ="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile01">Imagen de tarea</label>
-                <input type="file" class="form-control" name="imagen">
-            </div>
+
+
+        <div class="row">
+                <div class ="input-group mb-2" id="listImg" >
+                    <label class="input-group-text" for="inputGroupFile01">Imagen de accidente</label>
+                    <input type="file" class="form-control" name="imagen">
+                </div>
+                <div style="justify-conten: center;">
+                   <button type="button" class="btn btn-success" id="copyList">+</button> 
+                </div>
+                
+        </div> 
+
+        <div id="imagenes" class="mt-4 row">
+        
         </div>
 
         <div class="text-center">

@@ -1,6 +1,5 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<?php include_once '../Lib/helpers.php'; ?>
 
 <div class="card shadow-lg" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
@@ -65,12 +64,21 @@
         </div>
 
 
-        <div class ="row mt-3">
-            <div class ="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile01">Imagen</label>
-                <input type="file" class="form-control" name="imagen">
-            </div>
+        <div class="row" style="display: flex;">
+                <div class ="input-group mb-2" id="listImg" style="flex: 1; margin-right: 10px;">
+                    <label class="input-group-text" for="inputGroupFile01">Imagen de accidente</label>
+                    <input type="file" class="form-control" name="imagen">
+                </div>
+                <div style="justify-conten: center;">
+                   <button type="button" class="btn btn-success" id="copyList">+</button> 
+                </div>
+                
+        </div> 
+
+        <div id="imagenes" class="mt-4 row">
+        
         </div>
+
 
         <div class="text-center">
             <button type="submit" class="btn btn-secondary">Registrar</button>

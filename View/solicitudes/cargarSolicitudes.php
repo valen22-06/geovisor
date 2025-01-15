@@ -1,3 +1,10 @@
+<?php
+
+$_SESSION['punto_x'] = $_GET['x'];
+$_SESSION['punto_y'] = $_GET['y'];
+
+?>
+
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header bg-dark text-white">
@@ -12,9 +19,8 @@
             <option value="2">Nueva señalizacion</option>
             <option value="3">Señalizacion en mal estado</option>
             <option value="4">Reductor nuevo</option>
-            <option value="5">Reductor en mal esatdo</option>
+            <option value="5">Reductor en mal estado</option>
             <option value="6">Via en mal estado</option>
-            <option value="7">PQRS</option>
             
     </select>
             </div>

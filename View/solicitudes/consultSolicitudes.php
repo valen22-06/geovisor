@@ -14,7 +14,6 @@
             <option value="4">Reductor nuevo</option>
             <option value="5">Reductor en mal esatdo</option>
             <option value="6">Via en mal estado</option>
-            <option value="7">PQRS</option>
             
     </select>
             </div>

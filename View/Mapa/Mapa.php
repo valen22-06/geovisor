@@ -89,6 +89,11 @@ $urlImage = $mapImage -> saveWebImage();
             <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[3]"
                 value="Puntos">
             <strong>Puntos</strong>
+
+            <p align="left">
+            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[4]"
+                value="Accidente">
+            <strong>Accidente</strong>
             
     </form>
 </div> 
@@ -99,12 +104,6 @@ $urlImage = $mapImage -> saveWebImage();
     </div>
 </div> 
 
-
-    <!-- <p>
-        <b>Coordenadas en pixeles:</b> <?php echo $_POST['image_x']." , ".$_POST['image_y'];?>
-
-        <br><b>Coordenadas mapa:</b> <?php echo $map_pt[0]." , ".$map_pt[1];?>
-    </p> -->
 
 
     </div>
@@ -117,14 +116,14 @@ $urlImage = $mapImage -> saveWebImage();
         myMap1.setCgi('/cgi-bin/mapserv.exe');
         myMap1.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap1.setLayers('Punto Calles Comuna Mapa');
+        myMap1.setLayers('Accidente Puntos Calles Comuna Mapa');
 
         myMap2 = new msMap(document.getElementById('dc_main2'), 
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap2.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
-        myMap2.setLayers('Punto Comuna Mapa');
+        myMap2.setLayers('Puntos Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 
         myMap1.redraw(); 
@@ -197,17 +196,20 @@ $urlImage = $mapImage -> saveWebImage();
                     //     }
                     // ?>
                     
-                consultar1.open("GET", "Insertar_punto.php?x="+xx+"&y="+yy,true);
-                consultar1.onreadystatechange=function(){
-                    if(consultar1.readyState==4){
-                        var result= consultar1.responseText;
-                        alert(result)
-                    }
+                // consultar1.open("GET", "index.php?modulo=Solicitudes&controlador=Solicitudes&funcion=getSoli?x="+xx+"&y="+yy,true);
+                // consultar1.onreadystatechange=function(){
+                //     if(consultar1.readyState==4){
+                //         var result= consultar1.responseText;
+                //         alert(result)
+                //     }
 
-                }
-                consultar1.send(null)
+                // }
+                // consultar1.send(null)
                 seleccionado=false;
                 map.getTagMap().style.cursor="default";
+
+                window.location.href = "index.php?modulo=Solicitudes&controlador=Solicitudes&funcion=getSoli&x=" + xx + "&y=" + yy;
+
 
             }
 

@@ -78,35 +78,20 @@ $(document).ready(function(){
         }
     });
     
-        $(document).on('keyup','#buscarAccidente',function(){
+
+        $(document).on('keyup','#buscar',function(){
             let buscar = $(this).val();
             let url =$(this).attr('data-url');
             $.ajax({
                 url:url,
                 type:'POST',
-                data:{'buscarAccidente':buscar},
+                data:{'buscar':buscar},
                 success:function(data){
                     $('tbody').html(data);
                 }
             });
-    
-      
         });
 
-        $(document).on('keyup','#buscarUsuarios',function(){
-            let buscar = $(this).val();
-            let url =$(this).attr('data-url');
-            $.ajax({
-                url:url,
-                type:'POST',
-                data:{'buscarUsuarios':buscar},
-                success:function(data){
-                    $('tbody').html(data);
-                }
-            });
-    
-      
-        });
         $(document).on("click","#cambiar_estado",function(){
             let id =$(this).attr('data-id');
             let url =$(this).attr('data-url');
@@ -124,18 +109,17 @@ $(document).ready(function(){
     
        
         $(document).on("click","#copyList",function(){
-            let listUser=$("#listUser").html();
+            let listImg=$("#listImg").html();
           
     
-            $("#responsables").append(
-                "<div class='col-md-4 form group'>"+
-                "<label>Responsable</label>"+
-                "<div class='row'>"+
-                "<div class='col-md-10'>"+listUser+"</div>"+
-                "<div class='col-md-2'>"+
-                "<button class='btn btn-danger' type='button' id='removeList'>x</>"+
-                "</div>"+
-                "</div>"+
+            $("#imagenes").append(
+                "<div class='input-group mb-3'>"+
+                    "<div class='row'>"+
+                        "<div class='input-group'>"+listImg+
+                        "<button class='btn btn-danger' type='button' id='removeList'>x</button>"+
+                        "</div>"+
+                        
+                    "</div>"+
                 "</div>"
             )
     

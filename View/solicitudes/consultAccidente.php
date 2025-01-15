@@ -2,7 +2,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="../assets/js/global.js"></script>
 
-<?php include_once 'C:/ms4w/Apache/htdocs/geovisor/Lib/helpers.php'; ?>
 
 <div class="card shadow-lg mt-5" id="card_red_man">
     <div class="card-header bg-secondary text-white text-center">
@@ -13,8 +12,8 @@
 
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" name="buscarAccidente" id="buscarAccidente" class="form-control" placeholder="Buscar por nombre o correo" 
-                data-url='<?php echo getUrl("Solicitudes", "Solicitudes", "buscar",false,"ajax"); ?>'>
+            <input type="text" name="buscarAccidente" id="buscar" class="form-control" placeholder="Buscar por nombre o correo" 
+                data-url='<?php echo getUrl("Solicitudes", "Solicitudes", "buscarAccidente",false,"ajax"); ?>'>
         </div>
     </div>
     <div class="table-responsive">
@@ -45,15 +44,28 @@
                     echo "<td>".$acc['tipo_vehiculo']."</td>";
                     echo "<td>".$acc['tipo_choque']."</td>";
                     echo "<td>";
-                    echo "<form action='getUrl('Accidente', 'Accidente', 'postUpdateStatus');' method='post' class='mt-4'>";
-                    echo "<select class='form-select' name='id' id='id'>";
+                    echo "<form action='".getUrl("Solicitudes", "Solicitudes", "postUpdateStatusAccidente")."' method='post' class='mt-3 mb-3'>";
+                    echo "<select class='form-select mb-1 mt-4' name='id' id='id'>";
                     echo "<option disabled selected>".($acc['edescripcion'])."</option>";
                     foreach ($estado as $est) {
-                    echo "<option value='".($est['id_estado'])."'>".($est['nombre_estado'])."</option>";
+                    echo "<option value='".($est['id_estado'])."'";
+                    if ($_SESSION['rol']==3) {
+                        echo " disabled>";
+                    } else {
+                        echo ">";
+                    }
+                    
+                    echo ($est['nombre_estado'])."</option>";
                     }
                     echo "</select>";
-                    echo"<br>";
-                    echo "<button type='submit' class='btn btn-dark'>Enviar</button>";
+                    echo "<input name='id_accidente' value='".$acc['id_registro_accidente']."' style='display: none;'>";
+                    echo "<button type='submit' class='btn btn-dark'";
+                    if ($_SESSION['rol']==3) {
+                        echo " disabled>";
+                    } else {
+                        echo ">";
+                    }
+                    echo "Enviar</button>";
                     echo "</form>";
                     echo "</td>";
                     

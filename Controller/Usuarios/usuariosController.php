@@ -10,10 +10,12 @@ class UsuariosController{
             $sql="SELECT  u.*, r.nombre_rol as Rdescripcion, e.nombre_estado as Edescripcion, t.nombre_tipo_documento as tipo_documento FROM usuarios u, roles r, estado e, tipo_documento t WHERE u.id_rol=r.id_rol AND u.id_estado = e.id_estado AND u.id_tipo_documento = t.id_tipo_documento ORDER BY u.id_usuario ASC";
             $usuarios = $obj->consult($sql);
 
+            $roles = "SELECT * FROM roles";
+            $roles = $obj->consult($sql);
+
             include_once '../View/Usuarios/consult.php';
     }
     
-
 
     public function getCreate() {
         $model = new usuariosModel();
@@ -22,12 +24,19 @@ class UsuariosController{
         $sql = "SELECT * FROM tipo_via";
         $tipo_via =$model->consult($sql);
         if(!empty($tipo_documento)){    
-            // include_once 'signup.php';
-            // foreach($tipo_documento as $tipo){
-            //     echo $tipo;
-            // }
-            // redirect ('signup.php');
             include_once 'signup.php';
+        } 
+
+    }
+
+    public function getCreateAdmin() {
+        $model = new usuariosModel();
+        $sql = "SELECT * FROM tipo_documento";
+        $tipo_documento =$model->consult($sql);
+        $sql = "SELECT * FROM tipo_via";
+        $tipo_via =$model->consult($sql);
+        if(!empty($tipo_documento)){
+            include_once 'C:ms4w/Apache/htdocs/geovisor/View/Usuarios/registrar.php';
         } 
 
     }
@@ -331,9 +340,12 @@ class UsuariosController{
         $ejecutar = $obj->update($sql);
     
         if($ejecutar!=0){
-            $sql="SELECT  u.*, r.nombre_rol as Rdescripcion, e.nombre_estado as Edescripcion FROM usuarios u, roles r, estado e WHERE u.id_rol=r.id_rol AND u.id_estado = e.id_estado ORDER BY u.id_usuario ASC";
+
+            $sql="SELECT  u.*, r.nombre_rol as Rdescripcion, e.nombre_estado as Edescripcion, t.nombre_tipo_documento as tipo_documento FROM usuarios u, roles r, estado e, tipo_documento t WHERE u.id_rol=r.id_rol AND u.id_estado = e.id_estado AND u.id_tipo_documento = t.id_tipo_documento ORDER BY u.id_usuario ASC";
             $usuarios = $obj->consult($sql);
-            include_once '../View/Usuarios/consult.php';
+
+            include_once '../View/Usuarios/buscar.php';
+
         } else {
             echo "No se pudo actualizar";
         }

@@ -58,11 +58,11 @@ NAME "Calles"
 STATUS ON
 DATA "two.shp"
 TYPE LINE
-LABELITEM "nombre"
+LABELITEM "nomenclatu"
 CLASS
 STYLE
-COLOR 50 50 50
-OUTLINECOLOR 244 244 244
+COLOR 192 192 192
+OUTLINECOLOR 0 0 0
 END
 LABEL
 SIZE SMALL
@@ -74,10 +74,10 @@ END
 
 LAYER
     CONNECTIONTYPE postgis
-        NAME "Puntos"
+        NAME "Accidente"
         STATUS ON 
         CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
-        DATA "geom FROM (SELECT * FROM puntos) as Puntos using unique gid SRID=-1"
+        DATA "geom FROM (SELECT * FROM puntos) AS P INNER JOIN registro_accidente RA ON P.gid = RA.id_punto USING unique gid SRID=-1"
         TYPE POINT 
         CLASS
             STYLE 
@@ -85,6 +85,38 @@ LAYER
             SIZE 10
                 COLOR 255 123 120
                 OUTLINECOLOR 0 0 0
+            END 
+        END
+END
+
+LAYER
+    CONNECTIONTYPE postgis
+        NAME "Senializacion"
+        STATUS ON 
+        CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
+        DATA "geom FROM (SELECT * FROM puntos) AS P INNER JOIN senializacion_vial_nueva SVN ON P.gid = SVN.id_senializacion_vial_nueva USING unique gid SRID = -1"
+        TYPE POINT 
+        CLASS
+            STYLE 
+            SYMBOL casita
+            SIZE 10
+                
+            END 
+        END
+END
+
+LAYER
+    CONNECTIONTYPE postgis
+        NAME "Senializacion"
+        STATUS ON 
+        CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
+        DATA "geom FROM (SELECT * FROM puntos) AS P INNER JOIN senializacion_vial_nueva SVN ON P.gid = SVN.id_senializacion_vial_nueva USING unique gid SRID = -1"
+        TYPE POINT 
+        CLASS
+            STYLE 
+            SYMBOL casita
+            SIZE 10
+                
             END 
         END
 END
