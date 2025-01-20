@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <?php
-            if(!empty($sen)){
+            if(!empty($viaM)){
             foreach($viaM as $viaM){
                 $clase="";
                 $texto="";
@@ -41,7 +41,7 @@
                 echo "<td>";
                 echo"<form action='getUrl('Solicitudes', 'Solicitudes', 'postUpdateStatus');' method='post' class='mt-4'>";
                 echo "<select class='form-select' name='id' id='id'>";
-                echo "<option disabled selected>".($sen['edescripcion'])."</option>";
+                echo "<option disabled selected>".($viaM['edescripcion'])."</option>";
                 foreach ($estado as $est) {
                     echo "<option value='".($est['id_estado'])."'";
                     if ($_SESSION['rol']==3) {
@@ -53,7 +53,7 @@
                     echo ($est['nombre_estado'])."</option>";
                     }
                     echo "</select>";
-                    echo "<input name='id_senializacion' value='".$redu['id_reductores_nuevo']."' style='display: none;'>";
+                    echo "<input name='id_via' value='".$viaM['id_via_mal_estado']."' style='display: none;'>";
                     echo "<button type='submit' class='btn btn-dark'";
                     if ($_SESSION['rol']==3) {
                         echo " disabled>";

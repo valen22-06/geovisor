@@ -20,7 +20,7 @@
         }
     ?>
 
-        <form action="<?php echo getUrl("SenializacionM", "SenializacionM", "postCreate"); ?>" method="post" class="mt-4">
+        <form action="<?php echo getUrl("solicitudes", "solicitudes", "postCreateSenializacionM"); ?>" method="post" class="mt-4">
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="cat_senializacion" class="form-label">Tipo de orientacion</label>
@@ -28,7 +28,7 @@
                     <option disabled selected>Seleccione tipo de orientacion</option>
                     <?php
                       foreach ($orientacion as $tipo) {
-                          echo "<option value='" .$tipo['nombre_via']. "'>" .$tipo['nombre_orientacion_senializacion']."</option>";
+                          echo "<option value='" .$tipo['id_orientacion_senializacion']. "'>" .$tipo['nombre_orientacion_senializacion']."</option>";
                       }
                   ?>
                 </select>

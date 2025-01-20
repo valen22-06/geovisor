@@ -21,11 +21,11 @@ include_once '../Lib/helpers.php';
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
-<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+<body class="bg-dark d-flex align-items-center justify-content-center vh-100 mt-5">
 
   <div class="container">
-    <div class="card shadow-lg" style="max-width: 700px; margin: auto;">
-      <div class="card-header bg-dark text-white text-center">
+    <div class="card shadow-lg mt-5" style="max-width: 700px; margin: auto;">
+      <div class="card-header bg-secondary text-white text-center mt-2">
         <h3>Registrar Usuario</h3>
       </div>
 

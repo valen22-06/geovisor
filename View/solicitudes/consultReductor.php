@@ -30,8 +30,8 @@
             </thead>
             <tbody>
             <?php
-            if(!empty($redu)){
-                foreach($redu as $redu){
+            if(!empty($reductor)){
+                foreach($reductor as $redu){
                     $clase="";
                     $texto="";
                     echo "<tr>";

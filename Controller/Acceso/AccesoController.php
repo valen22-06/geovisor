@@ -13,7 +13,11 @@ class AccesoController {
 
         
         
-        $sql = "SELECT * FROM usuarios WHERE numero_documento= $1";
+        
+        
+        
+        if (validarNumeros($user)) {
+            $sql = "SELECT * FROM usuarios WHERE numero_documento= $1";
 
         $params = array($user);
         
@@ -22,8 +26,10 @@ class AccesoController {
         $hash= hash('sha256',$pass);
 
         $hashBd = $usuario['contrasenia'];
-        
-        
+        } else {
+            $_SESSION['error'][] = "El numero de documento debe ser solo numeros";
+            redirect("login.php"); 
+        }
         if (!empty($usuario)){
 
             if($usuario['id_estado']==1){

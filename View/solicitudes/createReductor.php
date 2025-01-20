@@ -20,7 +20,7 @@
             unset($_SESSION['errores']);
         }
     ?>
-    <form action="<?php echo getUrl("Solicitudes", "Solicitudes", "postCreate");?>" method="post" class="mt-4">
+    <form action="<?php echo getUrl("Solicitudes", "Solicitudes", "postCreateReductor");?>" method="post" class="mt-4">
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="cat_reductor" class="form-label">categoria de reductor</label>
@@ -51,59 +51,9 @@
                   ?>
                 </select>
             </div>
-            <!-- <div class="col-md-6">
-                <label for="tipo_via" class="form-label">Tipo de vía</label>
-                <select class="form-select" name="tipo_via" id="tipo_via">
-                    <option disabled selected>Seleccione un tipo de vía</option>
-                    <?php
-                      foreach ($tipo_via as $tipo) {
-                          echo "<option value='" .$tipo['nombre_via']. "'>" .$tipo['nombre_via']."</option>";
-                      }
-                  ?>
-                    
-                </select>
-            </div> -->
-        </div>
-
-        <!-- <div class="row mb-3">
-        <div class="col-md-6">
-                <label for="tipo_danio" class="form-label">Tipo de daño</label>
-                <select class="form-select" name="tipo_danio" id="tipo_danio">
-                    <option disabled selected>Seleccione un tipo de daño</option>
-                    <?php
-                    //   foreach ($danio as $dan) {
-                    //       echo "<option value='" .$dan['id_danio']. "'>" .$dan['nombre_danio']."</option>";
-                    //   }
-                  ?>
-                    
-                </select>
-            </div>
             
-        </div> -->
-
-        <!-- <div class="row mb-3">
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="numVia" placeholder="Número de la vía" name="numVia">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="letra" placeholder="Letra" name="letra">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="complemento" placeholder="Complemento" name="complemento">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="num" placeholder="Número" name="num">
-            </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="letra2" placeholder="Letra" name="letra2">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="complemento2" placeholder="Complemento" name="complemento2">
-            </div>
-        </div> -->
 
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentario</label>

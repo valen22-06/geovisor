@@ -31,7 +31,7 @@
             <tbody>
             <?php
 
-            if(!empty($sen)){
+            if(!empty($senializacion)){
             foreach($senializacion as $sen){
                 $clase="";
                 $texto="";

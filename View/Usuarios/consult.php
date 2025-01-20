@@ -69,14 +69,14 @@
                             echo "<select class='form-select mb-1 mt-4' name='id' id='id'>";
                             echo "<option disabled selected>".($usu['rdescripcion'])."</option>";
                             foreach ($roles as $rol) {
-                            echo "<option value='".($rol['id_rol'])."'";
+                            echo "<option value='".($roles['id_rol'])."'";
                             if ($_SESSION['rol']==3) {
                                 echo " disabled>";
                             } else {
                                 echo ">";
                             }
                             
-                            echo ($rol['nombre_rol'])."</option>";
+                            echo $rol['nombre_roles']."</option>";
                             }
                             echo "</select>";
                             echo "<input name='id_accidente' value='".$usu['id_usuario']."' style='display: none;'>";

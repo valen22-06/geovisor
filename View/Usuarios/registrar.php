@@ -7,11 +7,14 @@
   </div>
 
 
-    <div class="card-header bg-secondary text-white text-center mt-3">
-      <h3 class="display-6 mb-0">Registrar accidente</h3>
+  <div class="card shadow-lg" id="card_red_man">
+    <div class="card-header bg-secondary text-white text-center">
+        <h3 class="display-6 mb-0 mt-3">Registrar usuario</h3>
     </div>
+     
+    
 
-    <div class="card-body">
+    <div class="card-body ">
       <?php
         if (isset($_SESSION['errores'])) {
           echo "<div class='alert alert-danger' role='alert'>";
@@ -24,12 +27,14 @@
         }
       ?>
 
-    <div class="card shadow-lg">
+    
+
+    
       <form action="<?php echo getUrl('Usuarios', 'Usuarios', 'postCreate', false, 'ajax'); ?>" method="post">
         <div class="row mt-4">
           <!-- Columna 1 -->
           <div class="col-md-6">
-            <div class="mb-3 ms-3 md-3 mt-3">
+            <div class="mb-3 ms-3 md-3 mt-5">
               <label for="tipo_docu" class="form-label">Tipo de Documento</label>
               <select class="form-select" name="tipo_documento" id="tipo_docu">
                 <option value="" selected disabled>Seleccione un tipo de documento</option>
@@ -63,7 +68,7 @@
           </div>
 
           <!-- Columna 2 -->
-          <div class="col-md-6">
+          <div class="col-md-6 mt-4">
             <div class="mb-3 ms-3 md-3 mt-3">
               <label for="documento" class="form-label">Documento de Identidad</label>
               <input type="number" class="form-control" id="documento" name="documento" placeholder="Documento de identidad" required>
@@ -142,6 +147,6 @@
         </div>
 
       </form>
-
+      </div>
     </div>
 

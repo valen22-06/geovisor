@@ -19,7 +19,7 @@
             unset($_SESSION['errores']);
         }
     ?>
-    <form action="<?php echo getUrl("ReductorM", "ReductorM", "postCreate");?>" method="post" class="mt-4">
+    <form action="<?php echo getUrl("solicitudes", "solicitudes", "postCreateReductorM");?>" method="post" class="mt-4">
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="cat_reductor" class="form-label">categoria de reductor</label>

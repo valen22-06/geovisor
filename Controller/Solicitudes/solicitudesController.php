@@ -82,31 +82,50 @@
             $via_danio=$_POST['tipo_danio'];
             $via_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
-
+            $x = $_SESSION['punto_x'];
+            $y = $_SESSION['punto_y'];
 
            $validacion = true;
            
-           $img = $_FILES['imagen']['name'];
+           $imagen = $_FILES['imagen']['name'];
 
-            $ruta = "img/$img";
 
-            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
             if (empty($via_danio)) {
                 $_SESSION['errores'][] = "El campo daño es requerido";
                 $validacion = false;
             }
             if ($validacion) {
-                $id = $obj->autoIncrement("via_mal_estado");
-                $sql = "INSERT INTO via_mal_estado (id_via_mal_estado, descripcion, id_danio, id_usuario, id_estado) VALUES ($id,'$via_comentario',$via_danio, $id_usu, 3 )";
+
+                $idP = $obj->autoIncrement("puntos","id_punto");
+
+                $sql = "INSERT INTO puntos (id, texto, geom) VALUES ($idP, 'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)'), 4326))";
+
+                $ejecutar = $obj->insert($sql);
+
+                $id = $obj->autoIncrement("via_mal_estado", "id_via_mal_estado");
+                $sql = "INSERT INTO via_mal_estado (id_via_mal_estado, descripcion, id_danio, id_usuario, id_estado,id_punto) VALUES ($id,'$via_comentario',$via_danio, $id_usu, 3, $idP)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
-    
-                    $id = $obj->autoIncrement("reductores_malEstado");
-                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado) VALUES ($id,'$redu_comentario', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3 )";
+
+                    $i=0;
+                            
+                            foreach($imagen as $img){
+                        
+                            $idImg = $obj->autoIncrement("imagen_accidente", "id_imagen_accidente");
+                            $ruta = "img/$acc";
+                            move_uploaded_file($_FILES['img_acci']['tmp_name'][$i], $ruta);
+                            $sql="INSERT INTO imagen_reductornuevo_detalle VALUES ($id_img, '$ruta', $idR)";
+                            $ejecutar = $obj->insert($sql);
+                            if($ejecutar){
+                                $i++;
+                            }
+                                
+                            }
+
         
-                $ejecutar = $obj->insert($sql);
+                
                     if ($ejecutar) {
         
                         redirect("index.php");
@@ -124,7 +143,7 @@
         public function getReductorM(){
             $obj = new solicitudesModel();
             $sql="SELECT r.*, e.nombre_estado as Edescripcion, c.nombre_categoria_reductores as nombre_c, t.nombre_tipo_reductor as nombre_t, d.nombre_danio as nombre_d FROM reductores_malestado r, estado e, categoria_reductores c, tipo_reductor t, danio d WHERE r.id_estado = e.id_estado AND r.id_categoria_reductor=c.id_categoria_reductores AND r.id_tipo_reductor=t.id_tipo_reductor AND d.id_danio=r.id_danio ORDER BY r.id_reductores_malestado ASC";
-            $redu = $obj->consult($sql);
+            $reductor = $obj->consult($sql);
             $sql2="SELECT * FROM estado WHERE id_tipo_estado=2";
             $estado=$obj->consult($sql2);
 
@@ -156,13 +175,25 @@
             $redu_danio=$_POST['tipo_danio'];
             $redu_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
+            $x = $_SESSION['punto_x'];
+            $y = $_SESSION['punto_y'];
+
+            $acc_img = $_FILES['imagen']['name'];
 
 
            $validacion = true; 
 
             
             if (empty($redu_cat_redu)) {
-                $_SESSION['errores'][] = "El campo ctegoria es requerido";
+                $_SESSION['errores'][] = "El campo categoria es requerido";
+                $validacion = false;
+            }
+            if (empty($redu_tipo)) {
+                $_SESSION['errores'][] = "El campo tipo es requerido";
+                $validacion = false;
+            }
+            if (empty($redu_danio)) {
+                $_SESSION['errores'][] = "El campo daño es requerido";
                 $validacion = false;
             }
             // if (empty($redu_fecha)) {
@@ -170,19 +201,38 @@
             //     $validacion = false;
             // }
 
-            $img = $_FILES['imagen']['name'];
+            $imagen = $_FILES['imagen']['name'];
 
-            $ruta = "img/$img";
-
-            move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
             
 
             if ($validacion) {
-                $id = $obj->autoIncrement("reductores_malEstado");
-                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado) VALUES ($id,'$redu_comentario', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3 )";
-        
+                $idP = $obj->autoIncrement("puntos","id_punto");
+
+                $sql = "INSERT INTO puntos (id, texto, geom) VALUES ($idP, 'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)'), 4326))";
                 $ejecutar = $obj->insert($sql);
+
+                $id = $obj->autoIncrement("reductores_malEstado", "id_reductores_malestado");
+                $sql = "INSERT INTO reductores_malEstado (id_reductores_malEstado, descripcion, id_categoria_reductor, id_tipo_reductor, id_danio, id_usuario, id_estado, id_punto) VALUES ($id,'$redu_comentario', $redu_cat_redu, $redu_tipo,$redu_danio, $id_usu, 3,$idP)";
+                
+                $ejecutar = $obj->insert($sql);
+
                 if ($ejecutar) {
+                            
+                        $i=0;
+                            
+                            foreach($imagen as $img){
+                        
+                            $idImg = $obj->autoIncrement("imagen_accidente", "id_imagen_accidente");
+                            $ruta = "img/$acc";
+                            move_uploaded_file($_FILES['img_acci']['tmp_name'][$i], $ruta);
+                            $sql="INSERT INTO imagen_reductornuevo_detalle VALUES ($id_img, '$ruta', $idR)";
+                            $ejecutar = $obj->insert($sql);
+                            if($ejecutar){
+                                $i++;
+                            }
+                                
+                            }
+
     
                     redirect("index.php");
                 } else {
@@ -196,7 +246,7 @@
         public function getReductor(){
             $obj = new solicitudesModel();
             $sql="SELECT r.*, e.nombre_estado as Edescripcion, c.nombre_categoria_reductores as nombre_c, t.nombre_tipo_reductor as nombre_t FROM reductores_nuevo r, estado e, categoria_reductores c, tipo_reductor t  WHERE r.id_estado = e.id_estado AND r.id_categoria_reductor=c.id_categoria_reductores AND r.id_tipo_reductor=t.id_tipo_reductor ORDER BY r.id_reductores_nuevo ASC";
-            $redu = $obj->consult($sql);
+            $reductor = $obj->consult($sql);
             $sql2="SELECT * FROM estado WHERE id_tipo_estado=2";
             $estado=$obj->consult($sql2);
 
@@ -221,20 +271,23 @@
             $obj = new solicitudesModel();
 
             $redu_cat_redu=$_POST['cat_reductor'];
-            // $redu_fecha=$_POST['date'];
             $redu_tipo=$_POST['tipo_reductor'];
             $redu_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
+            $x = $_SESSION['punto_x'];
+            $y = $_SESSION['punto_y'];
+
+            $acc_img = $_FILES['imagen']['name'];
 
             $validacion = true; 
             
             if (empty($redu_cat_redu)) {
-                $_SESSION['errores'][] = "El campo ctegoria es requerido";
+                $_SESSION['errores'][] = "El campo categoria de reductor es requerido";
                 $validacion = false;
             }
 
             if (empty($redu_tipo)) {
-                $_SESSION['errores'][] = "El campo tipo es requerido";
+                $_SESSION['errores'][] = "El campo tipo de reductor es requerido";
                 $validacion = false;
             }
             
@@ -244,14 +297,34 @@
             $ruta = "img/$img";
 
             if ($validacion) {
-                $id = $obj->autoIncrement("reductores_nuevo");
-                $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado, id_punto) VALUES ($id,'$redu_comentario',$redu_cat_redu,$redu_tipo,$id_usu,3,1)";
-        
+                $idR = $obj->autoIncrement("reductores_nuevo", "id_reductores_nuevo");
+                $idP = $obj->autoIncrement("puntos","id_punto");
+
+                $sql = "INSERT INTO puntos (id, texto, geom) VALUES ($idP, 'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)'), 4326))";
                 $ejecutar = $obj->insert($sql);
+                
+        
+                
                 if ($ejecutar) {
-                    $id_img = $obj->autoIncrement("imagen_reductornuevo_detalle","id_imagen_reductornuevo");
-                    $sql = "INSERT INTO imagen_reductornuevo_detalle VALUES ($id_img, '$ruta', $id)";
-                    if ($obj->insert($sql)) {
+
+                    $sql = "INSERT INTO reductores_nuevo (id_reductores_nuevo, descripcion, id_categoria_reductor, id_tipo_reductor, id_usuario, id_estado, id_punto) VALUES ($idR,'$redu_comentario',$redu_cat_redu,$redu_tipo,$id_usu,3,$idP)";
+
+                    $ejecutar = $obj->insert($sql);
+                    
+                    
+                    $i=0;
+                            
+                            foreach($acc_img as $acc){
+                        
+                            $idImg = $obj->autoIncrement("imagen_accidente", "id_imagen_accidente");
+                            $ruta = "img/$acc";
+                            move_uploaded_file($_FILES['img_acci']['tmp_name'][$i], $ruta);
+                            $sql="INSERT INTO imagen_reductornuevo_detalle VALUES ($id_img, '$ruta', $idR)";
+                            $ejecutar = $obj->insert($sql);
+                            if($ejecutar){}
+                                $i++;
+                            }
+                    if ($ejecutar) {
                         redirect("index.php");
                     } else {
                         echo "Intenta nuevamente";
@@ -303,6 +376,9 @@
             $sen_t_sen=$_POST['t_sen'];
             $sen_danio=$_POST['tipo_danio'];
             $id_usu = $_SESSION ['id_usu'];
+            $sen_comentario = $_POST['comentario'];
+            $x = $_SESSION['punto_x'];
+            $y = $_SESSION['punto_y'];
             
             $validacion = true; 
 
@@ -313,14 +389,23 @@
             move_uploaded_file($_FILES['imagen']['tmp_name'],$ruta);
 
             if ($validacion) {
-                $id = $obj->autoIncrement("senializacion_vial_malEstado");
-                $sql = "INSERT INTO senializacion_vial_malestado VALUES ($id, '$sen_comentario',$sen_tipo_senializacion, $sen_cat_senializacion,  $sen_t_sen,$sen_danio ,$id_usu, 3)";
+                $idP = $obj->autoIncrement("puntos","id_punto");
+
+                $sql = "INSERT INTO puntos (id, texto, geom) VALUES ($idP, 'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)'), 4326))";
+                $ejecutar = $obj->insert($sql);
+
+                
+
+                
+                $id = $obj->autoIncrement("senializacion_vial_malEstado", "id_senializacion_vial_malestado");
+                $sql = "INSERT INTO senializacion_vial_malestado (id_senializacion_vial_malestado, descripcion, id_orientacion_senializacion, id_cat_senializacion, id_tipo_senializacion, id_danio, id_usuario, id_estado,id_punto) VALUES ($id, '$sen_comentario',$sen_tipo_senializacion, $sen_cat_senializacion,  $sen_t_sen,$sen_danio ,$id_usu, 3, $idP)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {  
                     $id_img = $obj->autoIncrement("imagen_seniamalestado_detalle","id_imagen_malestado");
                     $sql = "INSERT INTO imagen_seniamalestado_detalle VALUES ($id_img, '$ruta', $id)";
-                    if ($obj->insert($sql)) {
+                    $ejecutar = $obj->insert($sql);
+                    if ($ejecutar) {
                         redirect("index.php");
                     } else {
                         echo "Intenta nuevamente";
@@ -371,6 +456,8 @@
 
             $x = $_SESSION['punto_x'];
             $y = $_SESSION['punto_y'];
+
+            
             
 
             
@@ -413,18 +500,46 @@
                     $sqlA = "INSERT INTO registro_accidente (id_registro_accidente,lesionados,observacion,id_estado,id_tipo_vehiculo,id_tipo_choque, id_punto) VALUES ($id, '$acc_lesionados', '$acc_comentario',3, $acc_vehiculo, $acc_choque,$idP)";
                     $ejecutar = $obj->insert($sqlA);
 
-                     $i=0;
-                            $acc_img = $_FILES['imagen']['name'];
-                            foreach($acc_img as $acc){
-                        
+                    $i = 0;
+
+                    // Asegúrate de que $_FILES['imagen']['name'] sea válido y procesable
+                    $acc_img = $_FILES['imagen']['name'];
+                    
+                    if (is_array($acc_img)) {
+                        foreach ($acc_img as $acc) {
                             $idImg = $obj->autoIncrement("imagen_accidente", "id_imagen_accidente");
                             $ruta = "img/$acc";
-                            move_uploaded_file($_FILES['img_acci']['tmp_name'][$i], $ruta);
-                            $sql="INSERT INTO imagen_accidente_detalle VALUES ($idImg,'$ruta',$idA)";
-                            $ejecutar = $obj->insert($sql);
-                            if($ejecutar){}
-                                $i++;
+                    
+                            // Verificar que el archivo fue cargado correctamente antes de moverlo
+                            if ($_FILES['imagen']['error'][$i] === UPLOAD_ERR_OK) {
+                                // Mover el archivo a la ruta especificada
+                                if (move_uploaded_file($_FILES['imagen']['tmp_name'][$i], $ruta)) {
+                                    $sql = "INSERT INTO imagen_accidente_detalle VALUES ($idImg, '$ruta', $idA)";
+                                    $ejecutar = $obj->insert($sql);
+                    
+                                    if (!$ejecutar) {
+                                        echo "Error al insertar en la base de datos para el archivo: $acc.";
+                                    } else {
+                                        redirect("index.php");
+                                    }
+
+
+                                } else {
+                                    echo "Error al mover el archivo: $acc.";
+                                }
+                            } else {
+                                echo "Error al cargar el archivo: $acc. Código de error: " . $_FILES['imagen']['error'][$i];
                             }
+                    
+                            $i++;
+                        }
+                    } else {
+                        echo "No se recibieron archivos o los datos no son válidos.";
+                    }
+                    
+
+                            $_SESSION['punto_x']="";
+                            $_SESSION['punto_y']="";
                         
                 } else {
                     echo "Se ha producido un error al insertar";
@@ -462,9 +577,19 @@
             $sen_comentario=$_POST['comentario'];
             $id_usu = $_SESSION ['id_usu'];
 
+            $x = $_SESSION['punto_x'];
+            $y = $_SESSION['punto_y'];
+
 
             
             $validacion = true; 
+
+            if ($validacion) {
+                $idP = $obj->autoIncrement("puntos","id_punto");
+
+                $sql = "INSERT INTO puntos (id, texto, geom) VALUES ($idP, 'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)'), 4326))";
+                $ejecutar = $obj->insert($sql);
+            }
 
             $img = $_FILES['imagen']['name'];
 
@@ -474,14 +599,14 @@
 
             
 
-            if ($validacion) {
-                $id = $obj->autoIncrement("senializacion_vial_nueva");
-                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado), id_punto VALUES ($id,'$sen_comentario', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu , 3, 1)";
+            if ($ejecutar) {
+                $id = $obj->autoIncrement("senializacion_vial_nueva","id_senializacion_vial_nueva");
+                $sql = "INSERT INTO senializacion_vial_nueva (id_senializacion_vial_nueva, descripcion, id_orientacion_senializacion, id_cat_senializacion,id_tipo_senializacion, id_usuario,id_estado, id_punto) VALUES ($id,'$sen_comentario', $sen_tipo_senializacion, $sen_cat_senializacion, $sen_t_sen, $id_usu, 3,$idP)";
         
                 $ejecutar = $obj->insert($sql);
                 if ($ejecutar) {
                     $id_img = $obj->autoIncrement("imagen_senianueva_detalle","id_imagen_senianueva");
-                    $sql = "INSERT INTO imagen_accidente_detalle VALUES ($id_img, '$ruta', $id)";
+                    $sql = "INSERT INTO imagen_senianueva_detalle VALUES ($id_img, '$ruta', $id)";
                     if ($obj->insert($sql)) {
                         redirect("index.php");
                     } else {

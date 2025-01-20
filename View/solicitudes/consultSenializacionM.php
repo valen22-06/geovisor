@@ -33,7 +33,7 @@
             </thead>
             <tbody>
             <?php
-            if(!empty($sen)){
+            if(!empty($senializacion)){
             foreach($senializacion as $sen){
                 $clase="";
                 $texto="";
@@ -60,7 +60,7 @@
                     echo ($est['nombre_estado'])."</option>";
                     }
                     echo "</select>";
-                    echo "<input name='id_senializacion' value='".$redu['id_reductores_nuevo']."' style='display: none;'>";
+                    echo "<input name='id_senializacion' value='".$redu['id_senializacion_malestado']."' style='display: none;'>";
                     echo "<button type='submit' class='btn btn-dark'";
                     if ($_SESSION['rol']==3) {
                         echo " disabled>";

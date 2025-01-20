@@ -22,6 +22,9 @@
                 echo "</div>";
                 unset($_SESSION['errores']);
             }
+
+
+            
         ?>
 
     <form action="<?php echo getUrl("Solicitudes", "Solicitudes", "postCreateAccidente"); ?>" method="post" class="mt-4">
@@ -49,9 +52,9 @@
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="choque" class="form-label">Tipo de daño</label>
+                <label for="choque" class="form-label">Tipo de choque</label>
                 <select class="form-select" name="choque" id="choque">
-                    <option disabled selected>Seleccione tipo de daño</option>
+                    <option disabled selected>Seleccione tipo de choque</option>
                     <?php
                       foreach ($tipo_choque as $cho) {
                           echo "<option value='" .$cho['id_choque']. "'>" .$cho['descripcion']."</option>";

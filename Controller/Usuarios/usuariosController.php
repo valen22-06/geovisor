@@ -173,8 +173,9 @@ class UsuariosController{
         $usu_apellido1 = $_POST['apellido'];
         $usu_apellido2 = $_POST['segundoApellido'];
         $usu_correo = $_POST['email'];
-        $usu_clave = $_POST['Rptpwd'];
+        $usu_clave = $_POST['rptwd'];
         $usu_telefono = $_POST['telefono'];
+        $usu_direccion = $_POST['direccion'];
         
         
         
@@ -247,12 +248,17 @@ class UsuariosController{
             $validacion=false;
         }
     
-        if(validarClave($usu_clave)== false){
-            $_SESSION['errores'][] = "El campo clave debe contener un numero, un caracter especial, una mayuscula y ser de mas de 8 caracteres";
-            $validacion = false;
+        if(!empty($usu_clave)){
+            if(validarClave($usu_clave)== false){
+                $_SESSION['errores'][] = "El campo clave debe contener un numero, un caracter especial, una mayuscula y ser de mas de 8 caracteres";
+                $validacion = false;
+            }
         }
+        
 
         $hash= hash('sha256',$pass);
+
+        var_dump($usu_tipo);
 
 
             if ($_SESSION['rol']==3) {
@@ -264,27 +270,24 @@ class UsuariosController{
                 $sql = "UPDATE usuarios SET primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion' WHERE id_usuario = $usu_id";
     
             } elseif ($_SESSION['rol']==1){
-                $sql = "UPDATE usuarios SET numero_documento = '$usu_documento', primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', contrasenia id_tipo_documento = '$usu_tipo', contrasenia='$hash' WHERE id_usuario = $usu_id";
+                if(!empty($clave)){
+                    $sql = "UPDATE usuarios SET numero_documento = '$usu_documento', primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', id_tipo_documento = $usu_tipo, contrasenia='$hash' WHERE id_usuario = $usu_id";
+                } else {
+                    $sql = "UPDATE usuarios SET numero_documento = '$usu_documento', primer_nombre = '$usu_nombre1', segundo_nombre = '$usu_nombre2', primer_apellido = '$usu_apellido1', segundo_apellido = '$usu_apellido2', correo = '$usu_correo', telefono = '$usu_telefono', direccion_residencia ='$usu_direccion', id_tipo_documento = $usu_tipo WHERE id_usuario = $usu_id";
+                }
+                
             }
 
+            
       
-        //     if($validacion){
-        //         if($ejecutar){
-        //             redirect(getUrl("Usuarios","Usuarios","getUsuarios"));
-        //         }else{
-        //             echo "Se ha producido un error al actualizar";
-        //         }
-        //     }
-
-
-
-
-        // $ejecutar = $obj->update($sql);
-        
-
-        
-
-        
+            if($validacion){
+                $ejecutar = $obj->update($sql);
+                if($ejecutar){
+                    redirect(getUrl("Usuarios","Usuarios","getUsuarios"));
+                }else{
+                    echo "Se ha producido un error al actualizar";
+                }
+            }
 
 
     }

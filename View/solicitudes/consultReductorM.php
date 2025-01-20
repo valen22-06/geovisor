@@ -32,8 +32,8 @@
             <tbody>
             <?php
 
-            if (!empty($redu)) {
-            foreach($redu as $redu){
+            if (!empty($reductor)) {
+            foreach($reductor as $redu){
                 $clase="";
                 $texto="";
                 echo "<tr>";
@@ -58,7 +58,7 @@
                     echo ($est['nombre_estado'])."</option>";
                     }
                     echo "</select>";
-                    echo "<input name='id_reductor' value='".$redu['id_reductores_nuevo']."' style='display: none;'>";
+                    echo "<input name='id_reductor' value='".$redu['id_reductores_malestado']."' style='display: none;'>";
                     echo "<button type='submit' class='btn btn-dark'";
                     if ($_SESSION['rol']==3) {
                         echo " disabled>";

@@ -20,7 +20,7 @@
         }
     ?>
     
-    <form action="<?php echo getUrl("ViaMalEstado", "ViaMalEstado", "postCreate");?>" method="post" class="mt-4">
+    <form action="<?php echo getUrl("solicitudes", "solicitudes", "postCreateViaM");?>" method="post" class="mt-4">
 
         <div class="row mb-3">
             <div class="col-md-6">

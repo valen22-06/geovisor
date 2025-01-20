@@ -37,7 +37,7 @@ $urlImage = $mapImage -> saveWebImage();
             padding: 20px;
             border-radius: 20px;
             width: 141px;
-            height: 140px;
+            height: 230px;
             z-index: 102;
             left: 720px;
             top: 360px;
@@ -87,14 +87,8 @@ $urlImage = $mapImage -> saveWebImage();
     
         <p align="left">
             <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[3]"
-                value="Puntos">
-            <strong>Puntos</strong>
-
-            <p align="left">
-            <input CHECKED onclick="chgLayers()" class="chbox" type="checkbox" name="layer[4]"
                 value="Accidente">
             <strong>Accidente</strong>
-            
     </form>
 </div> 
 
@@ -116,14 +110,14 @@ $urlImage = $mapImage -> saveWebImage();
         myMap1.setCgi('/cgi-bin/mapserv.exe');
         myMap1.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
         myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-        myMap1.setLayers('Accidente Puntos Calles Comuna Mapa');
+        myMap1.setLayers('Accidente Calles Comuna Mapa');
 
         myMap2 = new msMap(document.getElementById('dc_main2'), 
         'standardRight');
         myMap2.setActionNone();
         myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
         myMap2.setMapFile('C:/ms4w/Apache/htdocs/geovisor/View/Mapa/Cali.map');
-        myMap2.setLayers('Puntos Comuna Mapa');
+        myMap2.setLayers('Comuna Mapa');
         myMap1.setReferenceMap(myMap2);
 
         myMap1.redraw(); 
@@ -180,31 +174,8 @@ $urlImage = $mapImage -> saveWebImage();
 
                 consultar1 = new objectAjax();
 
-                    // <?php
-                    //     $x = x;
-                    //     $y = y;
 
-                    //     $obj = new MasterModel();
-
-                    //     $result = $obj -> autoIncrement('puntos')-1;
-
-                    //     $sql = "INSERT INTO puntos (id,texto,geom) VALUES ($result,'Punto', ST_SetSRID(ST_GeomFromText('POINT($x $y)',4326))";
-                    //     if ($obj->insert($sql)) {
-                    //         echo "Se inserto correctamente";
-                    //     } else {
-                    //         echo "Se ha producido un error al insertar";
-                    //     }
-                    // ?>
-                    
-                // consultar1.open("GET", "index.php?modulo=Solicitudes&controlador=Solicitudes&funcion=getSoli?x="+xx+"&y="+yy,true);
-                // consultar1.onreadystatechange=function(){
-                //     if(consultar1.readyState==4){
-                //         var result= consultar1.responseText;
-                //         alert(result)
-                //     }
-
-                // }
-                // consultar1.send(null)
+                 
                 seleccionado=false;
                 map.getTagMap().style.cursor="default";
 

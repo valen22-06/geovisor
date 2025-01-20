@@ -107,10 +107,10 @@ END
 
 LAYER
     CONNECTIONTYPE postgis
-        NAME "Senializacion"
+        NAME "SenializacionM"
         STATUS ON 
         CONNECTION "user=postgres password=Valentina123 dbname=geovisor host=localhost port=5433"
-        DATA "geom FROM (SELECT * FROM puntos) AS P INNER JOIN senializacion_vial_nueva SVN ON P.gid = SVN.id_senializacion_vial_nueva USING unique gid SRID = -1"
+        DATA "geom FROM (SELECT * FROM puntos) AS P INNER JOIN senializacion_vial_malestado SVM ON P.gid = SVM.id_senializacion_vial_malestado USING unique gid SRID = -1"
         TYPE POINT 
         CLASS
             STYLE 
